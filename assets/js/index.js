@@ -1,4 +1,5 @@
-
+const { remote } = require("electron");
+var win = remote.BrowserWindow.getFocusedWindow();
 
 function login() {
     document.querySelector('.login').classList.remove('d-none');
@@ -43,3 +44,11 @@ auth.onAuthStateChanged((user) => {
 
 
 })
+
+function winclose() {
+    win.close();
+  }
+  function winmin() {
+    win.minimize();
+  }
+  
