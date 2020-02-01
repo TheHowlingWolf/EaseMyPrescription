@@ -14,6 +14,18 @@ body{
 .login{
     height: 90vh;
 }
+.choice{
+    height: 80vh;
+}
+.patient{
+    height: 80vh;
+}
+.pharmacy{
+    height: 80vh;
+}
+.doctor{
+    height: 80vh;
+}
 .Register{
     height: 90vh;
 }
