@@ -158,40 +158,43 @@
 
     <section class="scrollable col" id="doctorDashboard">
         <div class="row justify-content-center mt-3 " id="DoctorMenu">
-            <div class="col-11 card btn btn-light" onclick="addPrescription()">
-                <h4 class="my-auto">
+            <div class="col-11 card btn btn-light  border " onclick="addPrescription()">
+                <h3 class="my-auto">
                     New Prescriptions
-                </h4>
+                </h3>
             </div>
-            <div class="card col-5 mx-auto my-2 p-5  btn btn-light " onclick="pendingRx()">
+            <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border " onclick="pendingRx()">
                 <i class="fa fa-bell-o" aria-hidden="true"></i>
-                <h4 class="my-auto">
+                <h3 class="my-auto">
                     Pending Prescriptions
-                </h4>
+                </h3>
             </div>
-            <div class="card col-5 mx-auto my-2 p-5  btn btn-light " onclick="renewals()">
+            <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border  " onclick="renewals()">
                 <i class="fa fa-bell-o" aria-hidden="true"></i>
-                <h4 class="my-auto">
+                <h3 class="my-auto">
                     Renewals
-                </h4>
+                </h3>
             </div>
             <div class="col-12"></div>
-            <div class="card col-5 mx-auto my-2 p-5  btn btn-light " onclick="secureChat()">
+            <div class="card col-5 mx-auto my-2 p-5  btn btn-light border  " onclick="secureChat()">
                 <i class="fa fa-bell-o" aria-hidden="true"></i>
-                <h4 class="my-auto">
+                <h3 class="my-auto">
                     Secure Chat
-                </h4>
+                </h3>
             </div>
-            <div class="card col-5 mx-auto my-2 p-5  btn btn-light " onclick="tutorials()">
+            <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border " onclick="tutorials()">
                 <i class="fa fa-bell-o" aria-hidden="true"></i>
-                <h4 class="my-auto">
+                <h3 class="my-auto">
                     Tutorial
-                </h4>
+                </h3>
             </div>
         </div>
     </section>
 
     <section id="addPrescription" class="row justify-content-center mt-5">
+        <div class="col-12 text-center my-3">
+            <h3>Add Prescription</h3>
+        </div>
         <div class="col-5">
             <form id="newPrescription">
                 <div class="form-group row">
@@ -199,7 +202,7 @@
                             Pharmacy</span>
                     </label>
                     <div class="col-9">
-                        <input type="text" class="form-control" id="pharmacy">
+                        <input type="text" class="form-control" id="pharmacy" name="pharmacy">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -207,57 +210,81 @@
                             Name</span>
                     </label>
                     <div class="col-9">
-                        <input type="text" class="form-control" id="pharmacy">
+                        <input type="text" class="form-control" id="drug" name="drug">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-3 col-form-label text-left"><span class="fa fa-clock ">
                             Duration</span>
                     </label>
+                    <div class="col-9 ">
+                        <select class="col-12 text-center form-control " name="duration" id="duration">
+                            <option disabled selected>Choose Duration</option>
+                            <option value="7 days">7 days</option>
+                            <option value="10 days">10 days</option>
+                            <option value="14 days">14 days</option>
+                            <option value="30 days">30 days</option>
+                            <option value="30 days">90 days</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="substitution" class="col-3 col-form-label"><span class="fa fa-redo "> Refills</span>
+                    </label>
+                    <div class="col-9">
+
+                        <select class="col-12 form-control" name="refills" id="refills">
+                            <option disabled selected>Choose Refills</option>
+                            <option value="0"> 0 </option>
+
+                            <option value="3">3</option>
+
+                            <option value="5">5</option>
+                            <option value="7">7</option>
+
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row my-3">
+                    <label for="staticEmail" class="col-3 col-form-label text-left"><span class="fa fa-rss-square ">
+                            Smart Sigs</span>
+                    </label>
 
                     <div class="col-9 ">
 
-                        <select class="col-12 text-center form-control ">
+                        <select class="col-12 text-center form-control " name="smartSigs" id="smartSigs">
+                            <option disabled selected>Choose </option>
+                            <option>Take 1 capsule by Mouth once a day</option>
+                            <option>Take 1 capsule by Mouth twice a day</option>
+                            <option>Take 1 capsule by Mouth thrice a day</option>
+                            <option>Take 2 capsule by Mouth twice a day</option>
 
-                            <option>7 days</option>
-                            <option>10 days</option>
-                            <option>14 days</option>
-                            <option>30 days</option>
-                            <option>90 days</option>
-                            <option>Other</option>
+
+
 
                         </select>
                     </div>
 
 
                 </div>
-                <div class="form-group row">
-                    <label for="substitution" class="col-3 col-form-label"><span class="fa fa-redo "> Refills</span>
-                    </label>
-                    <div class="col-9">
-                        <input type="text" class="form-control" id="pharmacy">
-                    </div>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1" value="substitutionPermitted" >
-                    <label class="custom-control-label" for="customCheck1">Substitution Permitted</label>
-                </div>
-                <div class="form-group row">
-                    <input type="checkbox" class="form-check" id="substitutionPermitted">
-                    <div class="col-8">
 
+                <div class="form-group text-center row">
+                    <div class="col-12">
+                        <input type="checkbox" id="substitutionPermitted" name="substitutionPermitted">
                         <label for="substitutionPermitted" class="col-form-label"><span
                                 class="fa fa-heartbeat ">Substitution Permitted</span>
                         </label>
                     </div>
-                    <div class="col-8">
-                        <input type="radio" class="" id="substitutionPermitted">
-                        <label for="substitutionPermitted" class="col-form-label"><span
-                                class="fa fa-heartbeat ">Substitution Permitted</span>
-                        </label>
-                    </div>
-                </div>
 
+                </div>
+                <div class="form-group">
+                    <button class="form-control btn btn-outline-secondary">Submit</button>
+                </div>
             </form>
         </div>
     </section>
@@ -417,6 +444,7 @@
     </section>
 
 </body>
+
 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
@@ -424,8 +452,6 @@
 <script src="https://cdn.jsdelivr.net/npm/json2csv"></script>
 <script src="./assets/js/firebase.js"></script>
 <script src="./assets/js/auth_out.js"></script>
-<script src="./assets/js/auth.js"></script>
 <script src="./assets/js/doctor.js"></script>
-
 
 </html>

@@ -136,3 +136,23 @@ h1,h2,h3,h4,h5,h6{
     border: 2px solid;
     border-color: #00BFA6 !important;
 }
+
+input[type="checkbox"]{
+    width: 20px; /*Desired width*/
+    height: 20px; /*Desired height*/
+    
+    
+  }
+
+  input[type="checkbox"]:checked + label:before {
+    background: #00BFA6;
+    color: #333;
+    text-align: center;
+  }
+  input[type="checkbox"]:checked + label:after {
+    font-weight: bold;
+  }
+  
+  input[type="checkbox"]:focus + label::before {
+      outline: rgb(59, 153, 252) auto 5px;
+  }
