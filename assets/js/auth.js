@@ -1,29 +1,144 @@
-
-//signup
-const site = document.getElementById('siteSignUp');
-site.addEventListener('submit', (e) => {
+//Patient signup
+const psite = document.getElementById('patientSignUp');
+psite.addEventListener('submit', (e) => {
     //preventing default refresh
     e.preventDefault();
-    var adminKey;
     
-    (async function getAdminKey(){
-        await db.collection("ticketsCount").get().then((snapshot)=>{
-            adminKey=snapshot.docs[0].data().adminKey;   
-            console.log(snapshot.docs[0].data().adminKey);
-        });
-        
-    console.log(adminKey);
-    var userKey = document.getElementById('authKey').value;
-    console.log(userKey);
-    //get user info
-    if(userKey === adminKey)
-    {
-        console.log('hi');
-    const siteName = site['sitename'].value;
-    const email = site['email'].value;
-    const password = site['password'].value;
-    const devId = site['devId'].value;
-    const adminAccess = false;
+    //get patient info
+    const patientname = psite['patientname'].value;
+    const email = psite['email'].value;
+    const password = psite['password'].value;
+    const mobno = psite['mobno'].value;
+    let patientNo;
+    
+        //signup the user using firebase
+    auth.createUserWithEmailAndPassword(email, password)
+    .then( cred => {
+        //  console.log(cred.user.uid);
+        document.querySelector('.Register').classList.add('d-none');
+        document.querySelector('.con-reg').classList.remove('d-none');
+        setTimeout( (time) => {
+            psite.reset();
+            auth.signOut().then(async () => {
+                document.querySelector('.login').classList.remove('d-none');
+                document.querySelector('.intro').classList.add('d-none');
+                document.querySelector('.Register').classList.add('d-none');
+                document.querySelector('.con-reg').classList.add('d-none');
+                document.querySelector('.register-nav').style.borderBottom = '0px solid #00BFA6';
+                document.querySelector('.home-nav').style.borderBottom = '0px solid #00BFA6';
+                document.querySelector('.login-nav').style.borderBottom = '2px solid #00BFA6';
+                document.querySelector('.choice').classList.remove('d-none');
+                document.querySelector('.patient').classList.add('d-none');
+                document.querySelector('.pharmacy').classList.add('d-none');
+                document.querySelector('.doctor').classList.add('d-none');
+                await db.collection("count")
+                .get()
+                .then(snapshots => {
+                    patientNo = Number(snapshots.docs[0].data().patient) + 1;
+                });
+                db.collection('PatientProfile').add({
+                    patientId:patientNo,
+                    patientName: patientname,
+                    email: email,
+                    mobno: mobno,
+                    isDoctor: false,
+                    isPharmacy : false,
+                    isPatient: true
+                });
+                db.collection("count")
+                .doc("3u8oWZjNoUwr3PQT39II")
+                .update({ patient: patientNo });
+            })
+        }, 2000);
+    }).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        document.querySelector('.error').innerHTML = `OPPS! ${errorMessage}`;
+
+    });
+     
+});
+
+//Pharmacy Signup
+
+const phsite = document.getElementById('pharmaSignUp');
+phsite.addEventListener('submit', (e) => {
+    //preventing default refresh
+    e.preventDefault();
+    
+    //get patient info
+    const patientname = phsite['ph-patientname'].value;
+    const email = phsite['ph-email'].value;
+    const password = phsite['ph-password'].value;
+    const mobno = phsite['ph-mobno'].value;
+    const license = phsite['ph-licno'].value;
+    let pharNo;
+
+    
+        //signup the user using firebase
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(async cred => {
+        //  console.log(cred.user.uid);
+        document.querySelector('.Register').classList.add('d-none');
+        document.querySelector('.con-reg').classList.remove('d-none');
+        setTimeout(async (time) => {
+            phsite.reset();
+            auth.signOut().then(async () => {
+                document.querySelector('.login').classList.remove('d-none');
+                document.querySelector('.intro').classList.add('d-none');
+                document.querySelector('.Register').classList.add('d-none');
+                document.querySelector('.con-reg').classList.add('d-none');
+                document.querySelector('.register-nav').style.borderBottom = '0px solid #00BFA6';
+                document.querySelector('.home-nav').style.borderBottom = '0px solid #00BFA6';
+                document.querySelector('.login-nav').style.borderBottom = '2px solid #00BFA6';
+                document.querySelector('.choice').classList.remove('d-none');
+                document.querySelector('.patient').classList.add('d-none');
+                document.querySelector('.pharmacy').classList.add('d-none');
+                document.querySelector('.doctor').classList.add('d-none');
+                await db.collection("count")
+                .get()
+                .then(snapshots => {
+                    pharNo = Number(snapshots.docs[0].data().Pharmacy) + 1;
+                });
+                db.collection('PharmacyProfile').add({
+                    pharmacyId:pharNo,
+                    pharmacyName: patientname,
+                    email:email,
+                    mobno: mobno,
+                    licenceNo: license,
+                    isDoctor: false,
+                    isPharmacy : true,
+                    isPatient: false
+                });
+                db.collection("count")
+                .doc("3u8oWZjNoUwr3PQT39II")
+                .update({ Pharmacy: pharNo });
+            })
+        }, 2000);
+    }).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        document.querySelector('.error').innerHTML = `OPPS! ${errorMessage}`;
+
+    });
+     
+});
+
+//doctor Signup
+
+const dsite = document.getElementById('docSiteSignUp');
+dsite.addEventListener('submit', (e) => {
+    //preventing default refresh
+    e.preventDefault();
+    
+    //get patient info
+    const patientname = dsite['d-patientname'].value;
+    const email = dsite['d-email'].value;
+    const password = dsite['d-password'].value;
+    const mobno = dsite['d-mobno'].value;
+    const license = dsite['d-licno'].value;
+    let pharNo;
+    
         //signup the user using firebase
     auth.createUserWithEmailAndPassword(email, password)
     .then(cred => {
@@ -31,36 +146,45 @@ site.addEventListener('submit', (e) => {
         document.querySelector('.Register').classList.add('d-none');
         document.querySelector('.con-reg').classList.remove('d-none');
         setTimeout((time) => {
-            site.reset();
-            auth.signOut().then(() => {
+            dsite.reset();
+            auth.signOut().then(async () => {
                 document.querySelector('.login').classList.remove('d-none');
                 document.querySelector('.intro').classList.add('d-none');
                 document.querySelector('.Register').classList.add('d-none');
                 document.querySelector('.con-reg').classList.add('d-none');
-                document.querySelector('.register-nav').style.borderBottom = '0px solid #ffc107';
-                document.querySelector('.home-nav').style.borderBottom = '0px solid #ffc107';
-                document.querySelector('.login-nav').style.borderBottom = '2px solid #ffc107';
-                db.collection('UserProfile').add({
-                    uid: cred.user.uid,
-                    siteName: siteName,
-                    deviceId: devId,
-                    adminAccess: adminAccess
+                document.querySelector('.register-nav').style.borderBottom = '0px solid #00BFA6';
+                document.querySelector('.home-nav').style.borderBottom = '0px solid #00BFA6';
+                document.querySelector('.login-nav').style.borderBottom = '2px solid #00BFA6';
+                document.querySelector('.choice').classList.remove('d-none');
+                document.querySelector('.patient').classList.add('d-none');
+                document.querySelector('.pharmacy').classList.add('d-none');
+                document.querySelector('.doctor').classList.add('d-none');
+                await db.collection("count")
+                .get()
+                .then(snapshots => {
+                    docNo = Number(snapshots.docs[0].data().doctor) + 1;
                 });
+                db.collection('DoctorProfile').add({
+                    doctorId:docNo,
+                    doctorName: patientname,
+                    email:email,
+                    mobno: mobno,
+                    licenceNo: license,
+                    isDoctor: true,
+                    isPharmacy : false,
+                    isPatient: false
+                });
+                db.collection("count")
+                .doc("3u8oWZjNoUwr3PQT39II")
+                .update({ doctor: docNo });
             })
         }, 2000);
     }).catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
-
         document.querySelector('.error').innerHTML = `OPPS! ${errorMessage}`;
 
     });
-    }
-    else
-    {
-        document.querySelector('.error').innerHTML = `OPPS! Invalid Authentication Key Please Contact Admin`;
-    }
-    })();
      
 });
 
@@ -85,11 +209,19 @@ Login.addEventListener('submit', (e) => {
                         var adminCheck = snapshot.docs[0].data().adminAccess;
                         console.log(adminCheck);
 
-                        if (adminCheck) {
+                        if (isDoctor) {
                             window.location.assign('admin.html');
                         }
-                        else
+                        else if(isPharmacy)
                         { 
+                            window.location.assign('user.html');
+                        }
+                        else if(isPatient)
+                        {
+                            window.location.assign('user.html');
+                        }
+                        else
+                        {
                             window.location.assign('user.html');
                         }
                    })
