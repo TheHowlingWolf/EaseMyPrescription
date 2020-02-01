@@ -5,7 +5,7 @@ body{
     margin: 0;
     overflow-x: hidden;
     font-family: 'Prata', serif;
-    color:#F50004 !important;
+    color:#00BFA6 !important;
 }
 
 .intro{
@@ -31,10 +31,10 @@ body{
 }
 
 .home-nav{
-    border-bottom: 2px solid #F50004;
+    border-bottom: 2px solid #00BFA6;
 }
 .home-nav-dark{
-    border-bottom: 2px solid #F50004 !important;
+    border-bottom: 2px solid #00BFA6 !important;
 }
 a:hover{
     text-decoration: none !important;
@@ -49,24 +49,24 @@ a:hover{
     border-bottom:2px solid ;
     border-left:2px solid; 
     border-radius: 50px 800px 800px 50px;
-    background: #F50004;
+    background: #00BFA6;
     background-position: center;
     
 }
 .slip{
     height: 625px;
-    background: #F50004;
+    background: #00BFA6;
     background-position: center;
     background-size: 30px 10px;
-    border-top:2px solid #F50004;
-    border-bottom:2px solid #F50004;
-    border-right:2px solid #F50004; 
+    border-top:2px solid #00BFA6;
+    border-bottom:2px solid #00BFA6;
+    border-right:2px solid #00BFA6; 
     border-radius: 900px 900px 0px 0px;
 }
 .slip-head{
-    border-top:2px solid #F50004;
-    border-bottom:2px solid #F50004;
-    border-left:2px solid #F50004; 
+    border-top:2px solid #00BFA6;
+    border-bottom:2px solid #00BFA6;
+    border-left:2px solid #00BFA6; 
     border-radius: 0px 900px 00px 0px;
 }
 .details-site{
@@ -95,7 +95,7 @@ a:hover{
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #F50004; 
+    background: #00BFA6; 
     border-radius: 10px;
   }
 
@@ -116,8 +116,8 @@ a:hover{
 }
 
 .text-change{
-    color: #F50004 !important;
+    color: #00BFA6 !important;
 }
 .btn-change{
-    background: #F50004 !important;
+    background: #00BFA6 !important;
 }
