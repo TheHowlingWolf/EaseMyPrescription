@@ -121,3 +121,11 @@ a:hover{
 .btn-change{
     background: #00BFA6 !important;
 }
+
+.card{
+    height: 200px;
+}
+
+h1,h2,h3,h4,h5,h6{
+    color: #00BFA6 !important;
+}
