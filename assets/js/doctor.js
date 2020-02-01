@@ -5,22 +5,23 @@ function addPrescription() {
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.getElementById('addPrescription').classList.remove('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
-
+    db.collection('PatientProfile').get().then(snapshot => {
+        snapshot.forEach(doc => {
+            patientList.innerHTML += `<option value='${doc.data().patientId}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
+        })
+    })
+    
+    db.collection('PharmacyProfile').get().then(snapshot=>{
+        snapshot.forEach(doc=>{
+            pharmacyList.innerHTML += `<option value='${doc.data().pharmacyId}'> ${doc.data().pharmacyName}-Id(${doc.data().pharmacyId}) </option>`;
+        })
+    })
 }
 
 let patientList = document.getElementById('ChoosePatient')
-db.collection('PatientProfile').get().then(snapshot => {
-    snapshot.forEach(doc => {
-        patientList.innerHTML += `<option value='${doc.data().patientId}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
-    })
-})
 
 let pharmacyList = document.getElementById('ChoosePharmacy')
-db.collection('PharmacyProfile').get().then(snapshot=>{
-    snapshot.forEach(doc=>{
-        pharmacyList.innerHTML += `<option value='${doc.data().pharmacyId}'> ${doc.data().pharmacyName}-Id(${doc.data().pharmacyId}) </option>`;
-    })
-})
+
 function toDashboard() {
     document.getElementById('doctorDashboard').classList.remove('d-none');
     document.getElementById('addPrescription').classList.add('d-none');
@@ -34,7 +35,8 @@ NewPrescription.addEventListener('submit', e => {
     e.preventDefault();
     document.getElementById('prescriptionSubmit').disabled = true;
     let Prescription = {
-        pharmacy: NewPrescription['pharmacy'].value,
+        patient:NewPrescription['ChoosePatient'].value,
+        pharmacy: NewPrescription['ChoosePharmacy'].value,
         drugName: NewPrescription['drug'].value,
         refills: NewPrescription['refills'].value,
         duration: NewPrescription['duration'].value,
@@ -42,7 +44,8 @@ NewPrescription.addEventListener('submit', e => {
         substitutionPermitted: NewPrescription['substitutionPermitted'].checked
     }
     db.collection('prescriptions').add(Prescription);
-
+    NewPrescription.reset();
+    toDashboard();
 })
 
 document.getElementById('pending').addEventListener('click', e => {
