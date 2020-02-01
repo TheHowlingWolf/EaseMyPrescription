@@ -199,6 +199,7 @@ Login.addEventListener('submit', (e) => {
     //get user info
     const lg_email = Login['login_email'].value;
     const lg_pass = Login['login_password'].value;
+    const lg_sid = Login['sid'].value;
 
     auth.signInWithEmailAndPassword(lg_email, lg_pass)
         .then((cred) => {
@@ -208,29 +209,60 @@ Login.addEventListener('submit', (e) => {
             Login.reset();
             setTimeout((time) => {
                 auth.onAuthStateChanged(function (user) {
-                    console.log(user);
-                    db.collection('PatientProfile').where('uid','==',user.uid).get().then((snapshot)=>{
-                        var isDoctor = snapshot.docs[0].data().isDoctor;
-                        var isPatient = snapshot.docs[0].data().isPatient;
-                        var isPharmacy = snapshot.docs[0].data().isPharmacy;
-                        console.log(isDoctor+""+isPatient+""+isPharmacy);
+                    if(lg_sid === "pat"){
+                        db.collection('PatientProfile').where('uid','==',user.uid).get().then((snapshot)=>{
+                            var isDoctor = snapshot.docs[0].data().isDoctor;
+                            var isPatient = snapshot.docs[0].data().isPatient;
+                            var isPharmacy = snapshot.docs[0].data().isPharmacy;
+                            console.log(isDoctor+""+isPatient+""+isPharmacy);
 
-                        if (isDoctor) {
-                            window.location.assign('admin.html');
-                        }
-                        else if(isPharmacy)
-                        { 
-                            window.location.assign('user.html');
-                        }
-                        else if(isPatient)
-                        {
-                            window.location.assign('patient.html');
-                        }
-                        else
-                        {
-                            window.location.assign('user.html');
-                        }
-                   })
+                            if(isPatient)
+                            {
+                                window.location.assign('patient.html');
+                            }
+                            else
+                            {
+                                document.querySelector('.lgerror').innerHTML = `OPPS! Please Select a Valid Identity`;
+                            }
+                       })
+                    }
+                    else if(lg_sid === "phar"){
+                        db.collection('PharmacyProfile').where('uid','==',user.uid).get().then((snapshot)=>{
+                            var isDoctor = snapshot.docs[0].data().isDoctor;
+                            var isPatient = snapshot.docs[0].data().isPatient;
+                            var isPharmacy = snapshot.docs[0].data().isPharmacy;
+                            console.log(isDoctor+""+isPatient+""+isPharmacy);
+
+                            if(isPharmacy)
+                            {
+                                window.location.assign('pharmacy.html');
+                            }
+                            else
+                            {
+                                document.querySelector('.lgerror').innerHTML = `OPPS! Please Select a Valid Identity`;
+                            }
+                       })
+                    }
+                    else if(lg_sid === "doc"){
+                        db.collection('DoctorProfile').where('uid','==',user.uid).get().then((snapshot)=>{
+                            var isDoctor = snapshot.docs[0].data().isDoctor;
+                            var isPatient = snapshot.docs[0].data().isPatient;
+                            var isPharmacy = snapshot.docs[0].data().isPharmacy;
+                            console.log(isDoctor+""+isPatient+""+isPharmacy);
+
+                            if(isDoctor)
+                            {
+                                window.location.assign('doctor.html');
+                            }
+                            else
+                            {
+                                document.querySelector('.lgerror').innerHTML = `OPPS! Please Select a Valid Identity`;
+                            }
+                       })
+                    }
+                    else{
+                        document.querySelector('.lgerror').innerHTML = `OPPS! Please Select a Valid Identity`;
+                    }                      
                 })
             }, 2000);
         })
