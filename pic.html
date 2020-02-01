@@ -32,30 +32,35 @@
         overflow-y: hidden;
         margin: 0;
         padding: 0;
-        background: #222326;
     }
-    #myVideo {
-        position: fixed;
-        bottom: 0;
-        top: 0;
-        left: 0;
-        margin-left: -200px !important;
-        max-width: 1400px !important;
-        max-height: 800px !important;
-        }
 
 </style>
 <body>
+    <div class="container d-flex h-100 text-center" style="height: 100vh !important;" data-aos="zoom-in">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 align-self-center">
+                <img src="./assets/pictures/render.svg" class="img-fluid" alt="" srcset="" width="60%">
+                <p class="text-muted h2 font-weight-bold" style="color: #00BFA6 !important;">Ease My Prescript</p>
+            </div>
+        </div>
+    </div>
     <div class="text-center m-0 p-0">
-        <video id="myVideo" autoplay>
-            <source src="./assets/pictures/Arss.mp4" type="video/mp4">
-          </video>
+        <audio autoplay>
+            <source src="./assets/pictures/nokia_X_msg-bb2e6c22-cf21-39f0-82bc-c27eafdd3a89.mp3" type="audio/mp3">
+          </audio>
     </div>
 <script>
+
     (function(){
         setTimeout((time)=>{ 
             window.location.assign("index.html");
          },3000);
     })();
+    
+</script>
+<script>
+  AOS.init({
+      delay:200
+  });
 </script>
 </body>

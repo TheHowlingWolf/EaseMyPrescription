@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Prata&display=swap');
 body{
-    background: white !important;
+    background: #CCCCCC;
     padding: 0;
     margin: 0;
     overflow-x: hidden;
     font-family: 'Prata', serif;
-    color:#f50004!important;
+    color:#00BFA6 !important;
 }
 
 .intro{
@@ -31,10 +31,10 @@ body{
 }
 
 .home-nav{
-    border-bottom: 2px solid #f50004;
+    border-bottom: 2px solid #00BFA6;
 }
 .home-nav-dark{
-    border-bottom: 2px solid #f50004 !important;
+    border-bottom: 2px solid #00BFA6 !important;
 }
 a:hover{
     text-decoration: none !important;
@@ -49,24 +49,24 @@ a:hover{
     border-bottom:2px solid ;
     border-left:2px solid; 
     border-radius: 50px 800px 800px 50px;
-    background: #f50004;
+    background: #00BFA6;
     background-position: center;
     
 }
 .slip{
     height: 625px;
-    background: #f50004;
+    background: #00BFA6;
     background-position: center;
     background-size: 30px 10px;
-    border-top:2px solid #f50004;
-    border-bottom:2px solid #f50004;
-    border-right:2px solid #f50004; 
+    border-top:2px solid #00BFA6;
+    border-bottom:2px solid #00BFA6;
+    border-right:2px solid #00BFA6; 
     border-radius: 900px 900px 0px 0px;
 }
 .slip-head{
-    border-top:2px solid #f50004;
-    border-bottom:2px solid #f50004;
-    border-left:2px solid #f50004; 
+    border-top:2px solid #00BFA6;
+    border-bottom:2px solid #00BFA6;
+    border-left:2px solid #00BFA6; 
     border-radius: 0px 900px 00px 0px;
 }
 .details-site{
@@ -95,7 +95,7 @@ a:hover{
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #f50004; 
+    background: #00BFA6; 
     border-radius: 10px;
   }
 
@@ -115,16 +115,9 @@ a:hover{
     height: 645px;
 }
 
-
-.card{
-    height: 200px;
+.text-change{
+    color: #00BFA6 !important;
 }
-
-h1,h2,h3,h4,h5,h6{
-    color: #f50004 !important;
-}
-
-
-.h1 , .h2,.h3,.h4,.h5,.h6 {
-    color: #f50004;
+.btn-change{
+    background: #00BFA6 !important;
 }
