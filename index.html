@@ -52,7 +52,7 @@
             <div class="row justify-content-center align-items-center w-100">
                 <div class="col align-self-center">
                     <img src="./assets/pictures/pill.png" style="margin-left:-30px;" alt="" srcset="" width="170px" class="mb-4">
-                    <h1 class="display-4 font-weight-bold text-dark" style="margin-top:-20px; z-index: 20;"> Welcome to Ease My Prescript</h1>
+                    <h1 class="display-4 font-weight-bold text-dark" style="margin-top:-20px; z-index: 20;">Ease My Prescript</h1>
                     <h3 class="lead font-weight-normal">Medicine Management System</h3>
                     <button class="lg-btn btn btn-lg btn-outline-change text-dark mt-3 mx-2"
                         onclick="login();">Login</button>
@@ -66,7 +66,7 @@
         <div class="container d-flex h-100 text-center">
             <div class="row justify-content-center align-items-center w-100">
                 <div class="col align-self-center">
-                    <h1 class="display-4 font-weight-bold">ARSS Group Connect</h1>
+                    <img src="./assets/pictures/hospital.png" style="margin-left:-30px;" alt="" srcset="" width="170px" class="mb-4">
                     <div class="h1 text-change">Login</div>
                     <p class="lead text-change">Fill the form below</p>
                     <p class="lgerror lead text-dark font-weight-bold mt-2 bg-warning text-center"></p>
@@ -106,7 +106,7 @@
                         </div>
                         <input type="submit"
                             class="login-btn btn btn-lg btn-outline-change text-dark text-change mt-3 mx-2">
-                        <p class="text-change mt-2"> New Site? <a href="#" class="text-change"
+                        <p class="text-dark mt-2"> New Site? <a href="#" class="text-change"
                                 style="text-decoration: none;" onclick="signup();">Register Here!</a></p>
                     </form>
                 </div>
@@ -114,101 +114,293 @@
         </div>
     </section>
     <section class="Register d-none">
-        <div class="container d-flex h-100 text-center">
-            <div class="row justify-content-center align-items-center w-100">
-                <div class="col align-self-center">
-                    <h1 class="display-4 font-weight-bold">ARSS Group Connect</h1>
-                    <div class="h1 text-change">Register Here</div>
-                    <p class="lead text-change">Fill the form below</p>
-                    <p class="error lead text-dark font-weight-bold mt-2 bg-warning text-center"></p>
-                    <form class="form" id="siteSignUp" method="POST">
-                        <div class="form-group">
-                            <div class="input-group input-group-lg">
-                                <div class="container text-center">
-                                    <div class="row w-100">
-                                        <div class="col-2 w-100">
-                                            <span class="input-group-addon"><i
-                                                    class="far fa-id-badge fa-2x pt-2"></i></span>
-                                        </div>
-                                        <div class="col-10 w-100">
-                                            <input name="sitename" type="name" class="form-control rounded"
-                                                id="sitename" placeholder="Site Name in Caps">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group input-group-lg">
-                                <div class="container text-center">
-                                    <div class="row w-100">
-                                        <div class="col-2 w-100">
-                                            <span class="input-group-addon"><i
-                                                    class="far fa-envelope fa-2x pt-2"></i></span>
-                                        </div>
-                                        <div class="col-10 w-100">
-                                            <input name="email" type="email" class="form-control rounded" id="email"
-                                                placeholder="Email ID">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group input-group-lg">
-                                <div class="container text-center">
-                                    <div class="row w-100">
-                                        <div class="col-2 w-100">
-                                            <span class="input-group-addon"><i
-                                                    class="fas fa-lock fa-2x pt-2"></i></span>
-                                        </div>
-                                        <div class="col-10 w-100">
-                                            <input name="password" type="password" class="form-control rounded"
-                                                id="password" placeholder="Password">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group input-group-lg">
-                                <div class="container text-center">
-                                    <div class="row w-100">
-                                        <div class="col-2 w-100">
-                                            <span class="input-group-addon"><i class="fas fa-info-circle fa-2x pt-2"></i></span>
-                                        </div>
-                                        <div class="col-10 w-100">
-                                            <input name="devId" type="number" class="form-control rounded" id="devId"
-                                                placeholder="Device ID">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group input-group-lg">
-                                <div class="container text-center">
-                                    <div class="row w-100">
-                                        <div class="col-2 w-100">
-                                            <span class="input-group-addon"><i class="fas fa-key fa-2x pt-2"></i></span>
-                                        </div>
-                                        <div class="col-10 w-100">
-                                            <input name=authKey type="password" class="form-control rounded" id="authKey"
-                                                placeholder="Enter Admin Authentication Key">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <input type="submit" class="reg-btn btn btn-lg btn-outline-change text-dark text-change mt-3 mx-2">
-                        <p class="text-change mt-2"> Go to <a class="text-change" href="#"
-                                style="text-decoration: none;" onclick="login();"> Site Login</a></p>
-                        </form>
+        <section class="choice">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <img src="./assets/pictures/choice.png" style="margin-left:-30px;" alt="" srcset="" width="170px" class="mb-4">
+                        <h3 class="lead font-weight-normal">Please Select Your Identity</h3>
+                        <button class="lg-btn btn btn-lg btn-outline-change text-dark mt-3 mx-2"
+                            onclick="patient();">Patient</button>
+                        <button class="lg-btn btn btn-lg btn-outline-change text-dark mt-3 mx-2"
+                            onclick="pharmacy();">Pharmacy</button>
+                        <button class="lg-btn btn btn-lg btn-outline-change text-dark mt-3 mx-2"
+                        onclick="doctor();">Doctor</button>
                     </div>
                 </div>
             </div>
+        </section>
+        <section class="patient d-none">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <img src="./assets/pictures/patient.png" style="margin-left:-30px;" alt="" srcset="" width="170px" class="mb-4">
+                        <div class="h1 text-change">Register Here</div>
+                        <p class="lead text-change">Fill the form below</p>
+                        <p class="error lead text-dark font-weight-bold mt-2 bg-warning text-center"></p>
+                        <form class="form" id="siteSignUp" method="POST">
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i
+                                                        class="far fa-id-badge fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="patientname" type="name" class="form-control rounded"
+                                                    id="patientname" placeholder="Your Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i
+                                                        class="far fa-envelope fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="email" type="email" class="form-control rounded" id="email"
+                                                    placeholder="Email ID">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i
+                                                        class="fas fa-lock fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="password" type="password" class="form-control rounded"
+                                                    id="password" placeholder="Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i class="fas fa-info-circle fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="mobno" type="number" class="form-control rounded" id="mobno"
+                                                    placeholder="Mobile Number">
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            <input type="submit" class="pat-reg-btn btn btn-lg btn-outline-change text-dark text-change mt-3 mx-2">
+                            <p class="text-dark mt-2"> Get<a class="text-change" href="#"
+                                style="text-decoration: none;" onclick="choiceBack();">Back</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <section class="pharmacy d-none">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <img src="./assets/pictures/pharmacy.png" style="margin-left:-30px;" alt="" srcset="" width="170px" class="mb-4">
+                        <div class="h1 text-change">Register Here</div>
+                        <p class="lead text-change">Fill the form below</p>
+                        <p class="error lead text-dark font-weight-bold mt-2 bg-warning text-center"></p>
+                        <form class="form" id="siteSignUp" method="POST">
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i
+                                                        class="far fa-id-badge fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="patientname" type="name" class="form-control rounded"
+                                                    id="ph-patientname" placeholder="Pharmacy Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i
+                                                        class="far fa-envelope fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="email" type="email" class="form-control rounded" id="ph-email"
+                                                    placeholder="Email ID">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i
+                                                        class="fas fa-lock fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="password" type="password" class="form-control rounded"
+                                                    id="ph-password" placeholder="Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i class="fas fa-mobile fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="mobno" type="number" class="form-control rounded" id="ph-mobno"
+                                                    placeholder="Mobile Number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i class="fas fa-info-circle fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="licno" type="number" class="form-control rounded" id="ph-licno"
+                                                    placeholder="Drug Lisence Number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" class="phar-doc-reg-btn btn btn-lg btn-outline-change text-dark text-change mt-1 mx-2">
+                            <p class="text-dark mt-2"> Get<a class="text-change" href="#"
+                                style="text-decoration: none;" onclick="choiceBack();">Back</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <section class="doctor d-none">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <img src="./assets/pictures/doctor.png" style="margin-left:-30px;" alt="" srcset="" width="170px" class="mb-4">
+                        <div class="h1 text-change">Register Here</div>
+                        <p class="lead text-change">Fill the form below</p>
+                        <p class="error lead text-dark font-weight-bold mt-2 bg-warning text-center"></p>
+                        <form class="form" id="siteSignUp" method="POST">
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i
+                                                        class="far fa-id-badge fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="patientname" type="name" class="form-control rounded"
+                                                    id="d-patientname" placeholder="Your Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i
+                                                        class="far fa-envelope fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="email" type="email" class="form-control rounded" id="d-email"
+                                                    placeholder="Email ID">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i
+                                                        class="fas fa-lock fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="password" type="password" class="form-control rounded"
+                                                    id="d-password" placeholder="Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i class="fas fa-mobile fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="mobno" type="number" class="form-control rounded" id="d-mobno"
+                                                    placeholder="Mobile Number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <div class="container text-center">
+                                        <div class="row w-100">
+                                            <div class="col-2 w-100">
+                                                <span class="input-group-addon"><i class="fas fa-info-circle fa-2x pt-2"></i></span>
+                                            </div>
+                                            <div class="col-10 w-100">
+                                                <input name="drno" type="number" class="form-control rounded" id="d-drno"
+                                                    placeholder="Doctor Registration Number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" class="reg-btn btn btn-lg btn-outline-change text-dark text-change mt-1 mx-2">
+                            <p class="text-dark mt-2"> Get <a class="text-change" href="#"
+                                style="text-decoration: none;" onclick="choiceBack();">Back</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </section>
     </section>
     <section class="con-reg d-none">
         <div class="container d-flex h-100 text-center">
