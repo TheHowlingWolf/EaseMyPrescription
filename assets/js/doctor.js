@@ -7,13 +7,13 @@ function addPrescription() {
     document.getElementById('pending-Prescriptions').classList.add('d-none');
     db.collection('PatientProfile').get().then(snapshot => {
         snapshot.forEach(doc => {
-            patientList.innerHTML += `<option value='${doc.data().patientId}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
+            patientList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
         })
     })
-    
-    db.collection('PharmacyProfile').get().then(snapshot=>{
-        snapshot.forEach(doc=>{
-            pharmacyList.innerHTML += `<option value='${doc.data().pharmacyId}'> ${doc.data().pharmacyName}-Id(${doc.data().pharmacyId}) </option>`;
+
+    db.collection('PharmacyProfile').get().then(snapshot => {
+        snapshot.forEach(doc => {
+            pharmacyList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().pharmacyName}-Id(${doc.data().pharmacyId}) </option>`;
         })
     })
 }
@@ -31,18 +31,30 @@ function toDashboard() {
 
 let NewPrescription = document.getElementById('newPrescription');
 
-NewPrescription.addEventListener('submit', e => {
+NewPrescription.addEventListener('submit', async e => {
     e.preventDefault();
     document.getElementById('prescriptionSubmit').disabled = true;
     let Prescription = {
-        patient:NewPrescription['ChoosePatient'].value,
+        patient: NewPrescription['ChoosePatient'].value,
         pharmacy: NewPrescription['ChoosePharmacy'].value,
         drugName: NewPrescription['drug'].value,
         refills: NewPrescription['refills'].value,
         duration: NewPrescription['duration'].value,
         smartSigs: NewPrescription['smartSigs'].value,
-        substitutionPermitted: NewPrescription['substitutionPermitted'].checked
+        substitutionPermitted: NewPrescription['substitutionPermitted'].checked,
+        patientName: '',
+        pharmacyName: ''
     }
+
+    await db.collection('PatientProfile').where("uid", "==", `${Prescription.patient}`).get().then(snapshot => {
+        Prescription.patientName = snapshot.docs[0].data().patientName;
+    });
+
+    await db.collection('PharmacyProfile').where("uid", "==", `${Prescription.pharmacy}`).get().then(snapshot => {
+        Prescription.pharmacyName = snapshot.docs[0].data().pharmacyName;
+    })
+    console.log(Prescription);
+
     db.collection('prescriptions').add(Prescription);
     NewPrescription.reset();
     toDashboard();
