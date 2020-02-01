@@ -1,0 +1,28 @@
+{
+  "name": "arssWeighScale",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bootstrap.js",
+  "scripts": {
+    "start": "electron .",
+    "check": "electron-rebuild",
+    "package": "asar pack ARSSConnect-win32-x64/resources/app ARSSConnect-win32-x64/resources/app.asar ",
+    "build": "electron-packager . ARSSConnect  --ignore=node_modules/electron-*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.7",
+    "electron-packager": "^14.2.0",
+    "electron-rebuild": "^1.8.8"
+  },
+  "dependencies": {
+    "asar": "^2.0.3",
+    "http": "0.0.0",
+    "nodemailer": "^6.4.2",
+    "path": "^0.12.7",
+    "serialport": "^8.0.6",
+    "url": "^0.11.0"
+  }
+}
