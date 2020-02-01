@@ -107,14 +107,13 @@
     </script>
     <script>
         var pat_name;
-        auth.onAuthStateChanged(function (user) {
-            /* db.collection('PatientProfile').where('uid','==',uid).get().then((snapshots)=>{
+        (async function(){
+           await db.collection('PatientProfile').where('uid','==',user.uid).get().then((snapshots)=>{
             pat_name = snapshots.docs[0].data().patientName;
-        }); */
-        console.log(user.patientName);
         });
+        document.querySelector('.Site_name_header').innerHTML = `${pat_name}`
+        })();
         
-        document.querySelector('.Site_name_header').innerHTML = `${pat_name}`;
     </script>
 </body>
 
