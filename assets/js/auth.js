@@ -136,7 +136,7 @@ dsite.addEventListener('submit', (e) => {
     const email = dsite['d-email'].value;
     const password = dsite['d-password'].value;
     const mobno = dsite['d-mobno'].value;
-    const license = dsite['d-licno'].value;
+    const license = dsite['d-drno'].value;
     let pharNo;
     
         //signup the user using firebase
