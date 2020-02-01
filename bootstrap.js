@@ -23,7 +23,7 @@ function createWindow() {
     win.show();
 
     win.loadURL(url.format({
-        pathname: path.join(__dirname,'patient.html'),
+        pathname: path.join(__dirname,'pic.html'),
         protocol:'file',
         slashes:true
     }));

@@ -46,7 +46,7 @@
             </div>
         </div>
     </section>
-
+    
     <section class="intro ">
         <div class="container d-flex h-100 text-center">
             <div class="row justify-content-center align-items-center w-100">
@@ -71,6 +71,27 @@
                     <p class="lead text-change">Fill the form below</p>
                     <p class="lgerror lead text-dark font-weight-bold mt-2 bg-warning text-center"></p>
                     <form class="form" method="POST" id="login-form">
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <div class="container text-center">
+                                    <div class="row w-100">
+                                        <div class="col-2 w-100">
+                                            <label for="staticEmail"><span class="fa fa-clock ">
+                                                Select Identity</span>
+                                        </label>
+                                        </div>
+                                        <div class="col-10 w-100">
+                                            <select class="text-center form-control " name="duration" id="sid">
+                                                <option disabled selected>Identity</option>
+                                                <option value="pat">Patient</option>
+                                                <option value="phar">Pharmacy</option>
+                                                <option value="doc">Doctor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="input-group input-group-lg">
                                 <div class="container text-center">
