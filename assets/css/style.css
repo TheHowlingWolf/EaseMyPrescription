@@ -129,3 +129,10 @@ a:hover{
 h1,h2,h3,h4,h5,h6{
     color: #00BFA6 !important;
 }
+.btn-outline-change:hover{
+    background: #00BFA6 !important;
+}
+.btn-outline-change{
+    border: 2px solid;
+    border-color: #00BFA6 !important;
+}
