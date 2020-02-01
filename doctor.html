@@ -33,15 +33,15 @@
         <div class="container-fluid m-0">
             <div class="row w-100 m-0">
                 <div class="col-6 w-100 pt-1">
-                    <span class="h6 text-warning  "><img src="./assets/pictures/Icon.png" width="20px" class="mb-1">
-                        Doctor </span>
+                    <span class="h6  "><img src="./assets/pictures/Icon.png" width="20px" class="mb-1">
+                        Ease My Prescription </span>
                 </div>
                 <div class="col-6 text-right w-100">
                     <span class="pl-5">
-                        <button id="close-btn" class="btn btn btn-transparent text-warning m-0 p-0"
-                            onclick="winmin()"><i class="fas fa-window-minimize p-1"></i></button>
-                        <button id="close-btn" class="btn btn btn-transparent text-warning m-0 p-0"
-                            onclick="winclose()"><i class="fas fa-times-circle p-1"></i></button>
+                        <button id="close-btn" class="btn btn btn-transparent  m-0 p-0" onclick="winmin()"><i
+                                class="fas fa-window-minimize p-1"></i></button>
+                        <button id="close-btn" class="btn btn btn-transparent  m-0 p-0" onclick="winclose()"><i
+                                class="fas fa-times-circle p-1"></i></button>
                     </span>
                 </div>
             </div>
@@ -52,9 +52,9 @@
         <div class="container d-flex h-100 text-center">
             <div class="row justify-content-center align-items-center w-100">
                 <div class="col align-self-center">
-                    <div class="Site_name_header h4 text-center text-warning font-weight-bold m-0 clearfix">
+                    <div class="Site_name_header h4 text-center  font-weight-bold m-0 clearfix">
                         <span class=" ml-5 pl-4">
-                            <i class="text-warning fas fa-user ml-5 mr-1 "></i>ADMIN PANEL
+                            <i class=" fas fa-user ml-5 mr-1 "></i>hello Doctor
                         </span>
                         <button class="btn float-right px-3 btn-warning border-danger" onclick="settings()"><i
                                 class="fas fa-cog"></i><b> Settings</b></button>
@@ -80,7 +80,7 @@
                             <button class="lg-btn btn btn-lg btn-outline-warning btn-danger text-light mt-3 mx-2"
                                 onclick="authPass();">Update User Authentication Key</button>
                         </div>
-                        <button id="close-btn" class="btn btn btn-transparent text-warning m-2 p-0" onclick="back()"><i
+                        <button id="close-btn" class="btn btn btn-transparent  m-2 p-0" onclick="back()"><i
                                 class="fas fa-arrow-circle-left p-1"></i>Back To Admin Panel</button>
                     </div>
                 </div>
@@ -109,8 +109,8 @@
                             <input type="submit"
                                 class="update-pass-btn btn btn-lg btn-outline-warning btn-danger text-light mt-3 mx-2">
                         </div>
-                        <button id="close-btn" class="btn btn btn-transparent text-warning m-2 p-0"
-                            onclick="setBack()"><i class="fas fa-arrow-circle-left p-1"></i>Back To Settings
+                        <button id="close-btn" class="btn btn btn-transparent  m-2 p-0" onclick="setBack()"><i
+                                class="fas fa-arrow-circle-left p-1"></i>Back To Settings
                             Menu</button>
                     </div>
                 </div>
@@ -139,8 +139,8 @@
                             <input type="submit"
                                 class="update-auth-btn btn btn-lg btn-outline-warning btn-danger text-light mt-3 mx-2">
                         </div>
-                        <button id="close-btn" class="btn btn btn-transparent text-warning m-2 p-0"
-                            onclick="setBack()"><i class="fas fa-arrow-circle-left p-1"></i>Back To Settings
+                        <button id="close-btn" class="btn btn btn-transparent  m-2 p-0" onclick="setBack()"><i
+                                class="fas fa-arrow-circle-left p-1"></i>Back To Settings
                             Menu</button>
                     </div>
                 </div>
@@ -149,10 +149,117 @@
     </section>
 
 
-    <section class="scrollable">
+    <!-- <section class="scrollable">
 
-        <div class="row  justify-content-center" id="sites">
+        <div class="row  justify-content-center" id="">
 
+        </div>
+    </section> -->
+
+    <section class="scrollable col" id="doctorDashboard">
+        <div class="row justify-content-center mt-3 " id="DoctorMenu">
+            <div class="col-11 card btn btn-light" onclick="addPrescription()">
+                <h4 class="my-auto">
+                    New Prescriptions
+                </h4>
+            </div>
+            <div class="card col-5 mx-auto my-2 p-5  btn btn-light " onclick="pendingRx()">
+                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                <h4 class="my-auto">
+                    Pending Prescriptions
+                </h4>
+            </div>
+            <div class="card col-5 mx-auto my-2 p-5  btn btn-light " onclick="renewals()">
+                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                <h4 class="my-auto">
+                    Renewals
+                </h4>
+            </div>
+            <div class="col-12"></div>
+            <div class="card col-5 mx-auto my-2 p-5  btn btn-light " onclick="secureChat()">
+                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                <h4 class="my-auto">
+                    Secure Chat
+                </h4>
+            </div>
+            <div class="card col-5 mx-auto my-2 p-5  btn btn-light " onclick="tutorials()">
+                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                <h4 class="my-auto">
+                    Tutorial
+                </h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="addPrescription" class="row justify-content-center mt-5">
+        <div class="col-5">
+            <form id="newPrescription">
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-3 text-left col-form-label"><span class="fa fa-heartbeat">
+                            Pharmacy</span>
+                    </label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" id="pharmacy">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-3 col-form-label text-left"><span class="fa fa-tint  "> Drug
+                            Name</span>
+                    </label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" id="pharmacy">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-3 col-form-label text-left"><span class="fa fa-clock ">
+                            Duration</span>
+                    </label>
+
+                    <div class="col-9 ">
+
+                        <select class="col-12 text-center form-control ">
+
+                            <option>7 days</option>
+                            <option>10 days</option>
+                            <option>14 days</option>
+                            <option>30 days</option>
+                            <option>90 days</option>
+                            <option>Other</option>
+
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="form-group row">
+                    <label for="substitution" class="col-3 col-form-label"><span class="fa fa-redo "> Refills</span>
+                    </label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" id="pharmacy">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2">
+
+                        <input type="checkbox" class="form-check" id="substitutionPermitted">
+                    </div>
+
+
+                    <label for="substitutionPermitted" class="col-form-label col-8"><span
+                            class="fa fa-heartbeat ">Substitution Permitted</span>
+                    </label>
+
+                </div>
+                <div class="col-8">
+                    <input type="radio" class="" id="substitutionPermitted">
+                    <label for="substitutionPermitted" class="col-form-label"><span
+                            class="fa fa-heartbeat ">Substitution Permitted</span>
+                    </label>
+                </div>
+        </div>
+
+
+        </form>
         </div>
     </section>
 
@@ -171,7 +278,7 @@
                         <div class="p-1 bg-light rounded rounded-pill shadow-sm ">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <button id="button-addon2" type="submit" class="btn btn-link text-warning"><i
+                                    <button id="button-addon2" type="submit" class="btn btn-link "><i
                                             class="fa fa-search"></i></button>
                                 </div>
                                 <input type="search" placeholder="Ticket No" aria-describedby="button-addon2"
@@ -185,18 +292,18 @@
                 <!-- <div class="col-12 align-self-start">
                     <nav aria-label="Page navigation example">
                         <ul class=" pagination justify-content-center">
-                            <li class="page-item "><a class="page-link bg-dark border-warning text-warning"
+                            <li class="page-item "><a class="page-link bg-dark border-warning "
                                     href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link bg-dark border-warning text-warning"
+                            <li class="page-item"><a class="page-link bg-dark border-warning "
                                     href="#">1</a>
                             </li>
-                            <li class="page-item"><a class="page-link bg-dark border-warning text-warning"
+                            <li class="page-item"><a class="page-link bg-dark border-warning "
                                     href="#">2</a>
                             </li>
-                            <li class="page-item"><a class="page-link bg-dark border-warning text-warning"
+                            <li class="page-item"><a class="page-link bg-dark border-warning "
                                     href="#">3</a>
                             </li>
-                            <li class="page-item"><a class="page-link bg-dark border-warning text-warning"
+                            <li class="page-item"><a class="page-link bg-dark border-warning "
                                     href="#">Next</a>
                             </li>
                         </ul>
@@ -233,7 +340,7 @@
 
     <section id="download-slips" class="d-none mt-5 pt-5">
         <div class="row justify-content-center">
-            <button id="close-btn" class="col-12 btn btn btn-transparent text-warning m-2 p-0" onclick="adminback()"><i
+            <button id="close-btn" class="col-12 btn btn btn-transparent  m-2 p-0" onclick="adminback()"><i
                     class="fas fa-arrow-circle-left p-1"></i>Back </button>
             <form id="date-form" class="col-6 row justify-content-center">
                 <div class="form-group col-10">
@@ -300,7 +407,7 @@
                 <div class="col align-self-center">
                     <div class="row justify-content-center fixed-bottom">
                         <div class="col align-self-center">
-                            <a href="#" class="logout home-nav text-warning mx-2">Logout</a>
+                            <a href="#" class="logout home-nav  mx-2" style="color: #f50004;">Logout</a>
                             <p class="text-light mt-2"> Powered By <a href="#" style="text-decoration: none;"><b
                                         class="text-danger">Codepth</b></a> All Rights Reserved. </p>
                         </div>
@@ -319,7 +426,7 @@
 <script src="./assets/js/firebase.js"></script>
 <script src="./assets/js/auth_out.js"></script>
 <script src="./assets/js/auth.js"></script>
-<script src="./assets/js/adminIndex.js"></script>
-<script src="./assets/js/serial.js"></script>
+<script src="./assets/js/doctor.js"></script>
+
 
 </html>
