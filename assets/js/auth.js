@@ -37,6 +37,7 @@ psite.addEventListener('submit', (e) => {
                     patientNo = Number(snapshots.docs[0].data().patient) + 1;
                 });
                 db.collection('PatientProfile').add({
+                    uid: cred.user.uid,
                     patientId:patientNo,
                     patientName: patientname,
                     email: email,
@@ -101,6 +102,7 @@ phsite.addEventListener('submit', (e) => {
                     pharNo = Number(snapshots.docs[0].data().Pharmacy) + 1;
                 });
                 db.collection('PharmacyProfile').add({
+                    uid: cred.user.uid,
                     pharmacyId:pharNo,
                     pharmacyName: patientname,
                     email:email,
@@ -165,6 +167,7 @@ dsite.addEventListener('submit', (e) => {
                     docNo = Number(snapshots.docs[0].data().doctor) + 1;
                 });
                 db.collection('DoctorProfile').add({
+                    uid: cred.user.uid,
                     doctorId:docNo,
                     doctorName: patientname,
                     email:email,
@@ -205,9 +208,12 @@ Login.addEventListener('submit', (e) => {
             Login.reset();
             setTimeout((time) => {
                 auth.onAuthStateChanged(function (user) {
-                    db.collection('UserProfile').where('uid','==',user.uid).get().then((snapshot)=>{
-                        var adminCheck = snapshot.docs[0].data().adminAccess;
-                        console.log(adminCheck);
+                    console.log(user);
+                    db.collection('PatientProfile').where('uid','==',user.uid).get().then((snapshot)=>{
+                        var isDoctor = snapshot.docs[0].data().isDoctor;
+                        var isPatient = snapshot.docs[0].data().isPatient;
+                        var isPharmacy = snapshot.docs[0].data().isPharmacy;
+                        console.log(isDoctor+""+isPatient+""+isPharmacy);
 
                         if (isDoctor) {
                             window.location.assign('admin.html');
@@ -218,7 +224,7 @@ Login.addEventListener('submit', (e) => {
                         }
                         else if(isPatient)
                         {
-                            window.location.assign('user.html');
+                            window.location.assign('patient.html');
                         }
                         else
                         {
