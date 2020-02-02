@@ -156,42 +156,45 @@
         </div>
     </section> -->
 
-    <section class="scrollable col" id="PharmacyDashboard">
-        <div class="row justify-content-center mt-3 " id="DoctorMenu">
-            <div class="col-11 card btn btn-light  border " onclick="allPrescriptions()">
-
-                <h3 class="my-auto">
-                    All Prescriptions
-                </h3>
-            </div>
-            <!-- <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border " onclick="pendingRx()">
-                <i class="fa fa-bell-o" aria-hidden="true"></i>
-                <h3 class="my-auto">
-                    Pending Prescriptions
-                </h3>
-            </div> -->
-            <!-- <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border  " onclick="renewals()">
-                <i class="fa fa-bell-o" aria-hidden="true"></i>
-                <h3 class="my-auto">
-                    Renewals
-                </h3>
-            </div> -->
-            <div class="col-12"></div>
-            <div class="card col-5 mx-auto my-2 p-5  btn btn-light border  " onclick="secureChat()">
-                <i class="fa fa-bell-o" aria-hidden="true"></i>
-                <h3 class="my-auto">
-                    Secure Chat
-                </h3>
-            </div>
-            <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border " onclick="tutorials()">
-                <i class="fa fa-bell-o" aria-hidden="true"></i>
-                <h3 class="my-auto">
-                    Tutorial
-                </h3>
+    <section class="components mt-2" id="PharmacyDashboard">
+        <div class="container d-flex h-100" >
+            <div class="row justify-content-center align-items-center w-100">
+                <section id="services" class="section-bg">
+                    <div class="container">
+              
+                      <header class="section-header text-center">
+                        <h1 class="font-weight-bold text-light mb-5 pb-5">Welcome to Ease My Prescript!</h1>
+                      </header>
+              
+                      <div class="row">
+                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="allPrescriptions()">
+                          <div class="box">
+                            <div class="icon" style="background: #fceef3;"><img src="./assets/pictures/report.png" alt="" srcset="" width="60%"></div>
+                            <h4 class="title"><a href="#" id="presAct">Check Presciptions</a></h4>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s"  onclick="tutorials()">
+                          <div class="box">
+                            <div class="icon" style="background: #fff0da;"><img src="./assets/pictures/pharmacy.png" alt="" srcset="" width="60%"></div>
+                            <h4 class="title"><a href="">Set An Appointment</a></h4>
+                          </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s" onclick="secureChat()">
+                          <div class="box">
+                            <div class="icon" style="background: #e6fdfc;"><img src="./assets/pictures/doctor.png" alt="" srcset="" width="60%"></div>
+                            <h4 class="title"><a href="">Chat With Doctor</a></h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section><!-- #services -->
             </div>
         </div>
     </section>
-    <section id="all-prescription" class="row text-center">
+
+
+
+    <section id="all-prescription" class="row text-center d-none" >
         <div class="col-12">
             <a onclick="toDashboard()" style="cursor: pointer;"> Back </a>
             <h3>All Prescriptions</h3>

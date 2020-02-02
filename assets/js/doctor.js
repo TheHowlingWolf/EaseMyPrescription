@@ -6,7 +6,7 @@ function addPrescription() {
     document.getElementById('addPrescription').classList.remove('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
     db.collection('PatientProfile').get().then(snapshot => {
-        patientList.innerHTML ='';
+        patientList.innerHTML = '';
         snapshot.forEach(doc => {
             patientList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
         })
@@ -56,13 +56,13 @@ NewPrescription.addEventListener('submit', async e => {
         substitutionPermitted: NewPrescription['substitutionPermitted'].checked,
         patientName: '',
         pharmacyName: ''
-        
+
     }
 
     await db.collection('PatientProfile').where("uid", "==", `${Prescription.patient}`).get().then(snapshot => {
-        Prescription.patientName = snapshot.docs[0].data().patientName +`(${ snapshot.docs[0].data().patientId })` ;
+        Prescription.patientName = snapshot.docs[0].data().patientName + `(${snapshot.docs[0].data().patientId})`;
     });
-    await db.collection('DoctorProfile').where("uid","==",`${uid}`).get().then(snapshot=>{
+    await db.collection('DoctorProfile').where("uid", "==", `${uid}`).get().then(snapshot => {
         Prescription.doctorId = uid;
         Prescription.doctorName = snapshot.docs[0].data().doctorName;
     })
@@ -76,19 +76,36 @@ NewPrescription.addEventListener('submit', async e => {
     toDashboard();
 })
 
-document.getElementById('pending').addEventListener('click', e => {
+document.getElementById('pending').addEventListener('click', async e => {
 
     document.getElementById('pending').disabled = true;
     let Prescription = {
-        pharmacy: NewPrescription['pharmacy'].value,
+        patient: NewPrescription['ChoosePatient'].value,
+        pharmacy: NewPrescription['ChoosePharmacy'].value,
         drugName: NewPrescription['drug'].value,
         refills: NewPrescription['refills'].value,
         duration: NewPrescription['duration'].value,
         smartSigs: NewPrescription['smartSigs'].value,
-        substitutionPermitted: NewPrescription['substitutionPermitted'].checked
+        substitutionPermitted: NewPrescription['substitutionPermitted'].checked,
+        patientName: '',
+        pharmacyName: ''
+
     }
 
+    await db.collection('PatientProfile').where("uid", "==", `${Prescription.patient}`).get().then(snapshot => {
+        Prescription.patientName = snapshot.docs[0].data().patientName + `(${snapshot.docs[0].data().patientId})`;
+    });
+    await db.collection('DoctorProfile').where("uid", "==", `${uid}`).get().then(snapshot => {
+        Prescription.doctorId = uid;
+        Prescription.doctorName = snapshot.docs[0].data().doctorName;
+    })
+    await db.collection('PharmacyProfile').where("uid", "==", `${Prescription.pharmacy}`).get().then(snapshot => {
+        Prescription.pharmacyName = snapshot.docs[0].data().pharmacyName;
+    })
+
     db.collection('pendingPrescriptions').add(Prescription);
+    NewPrescription.reset();
+    toDashboard();
 })
 
 
