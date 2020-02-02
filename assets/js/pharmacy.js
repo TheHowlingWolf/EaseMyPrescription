@@ -3,7 +3,7 @@ let prescriptions = document.getElementById('showPrescriptions');
 function allPrescriptions() {
     document.getElementById('all-prescription').classList.remove('d-none');
     document.getElementById('PharmacyDashboard').classList.add('d-none');
-    
+    prescriptions.innerHTML = '';
     
     db.collection('prescriptions').where('pharmacy', '==', `${uid}`).get().then(snapshot => {
         snapshot.forEach(doc => {

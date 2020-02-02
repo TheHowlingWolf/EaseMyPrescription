@@ -167,7 +167,7 @@
                             <h1 class="font-weight-bold text-light mb-5 pb-5">Welcome to Ease My Prescript!</h1>
                         </header>
 
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s"
                                 onclick="addPrescription()">
                                 <div class="box">
@@ -180,24 +180,24 @@
                                 onclick="pendingRx()">
                                 <div class="box">
                                     <div class="icon" style="background: #fff0da;"><img
-                                            src="./assets/pictures/pharmacy.png" alt="" srcset="" width="60%"></div>
-                                    <h4 class="title"><a href="">Pending Prescriptions</a></h4>
+                                            src="./assets/pictures/report.png" alt="" srcset="" width="60%"></div>
+                                    <h4 class="title"><a href="#">Pending Prescriptions</a></h4>
                                 </div>
                             </div>
 
                             <div class="col-md-12 col-lg-4 wow bounceInUp" data-wow-delay="0.1s"
-                                data-wow-duration="1.4s" onclick="secureChat()">
+                                data-wow-duration="1.4s" onclick="toggleFab()">
                                 <div class="box">
                                     <div class="icon" style="background: #e6fdfc;"><img
                                             src="./assets/pictures/doctor.png" alt="" srcset="" width="60%"></div>
-                                    <h4 class="title"><a href="">Chat With Doctor</a></h4>
+                                    <h4 class="title"><a href="#">Chat With Patient</a></h4>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s" onclick="renewals()">
                                 <div class="box">
                                     <div class="icon" style="background: #fff0da;"><img
                                             src="./assets/pictures/pharmacy.png" alt="" srcset="" width="60%"></div>
-                                    <h4 class="title"><a href="">Pending Prescriptions</a></h4>
+                                    <h4 class="title"><a href="#">Renewals</a></h4>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s"
@@ -205,7 +205,7 @@
                                 <div class="box">
                                     <div class="icon" style="background: #fff0da;"><img
                                             src="./assets/pictures/pharmacy.png" alt="" srcset="" width="60%"></div>
-                                    <h4 class="title"><a href="">Pending Prescriptions</a></h4>
+                                    <h4 class="title"><a href="#">Tutorials</a></h4>
                                 </div>
                             </div>
                         </div>
@@ -218,7 +218,7 @@
 
 
 
-    <section id="addPrescription" class="row justify-content-center mt-5 d-none" >
+    <section id="addPrescription" class="row justify-content-center mt-5 d-none">
         <div class="col-12 text-center my-3">
             <a class="btn btn-sm" onclick="toDashboard()">Back</a>
             <h3>Add Prescription</h3>
@@ -330,8 +330,8 @@
                     <button class="form-control btn btn-outline-secondary" id="prescriptionSubmit">Submit</button>
                 </div>
                 <div class="form-group">
-                    <button class="form-control btn btn-outline-secondary" type="button" id="pending"
-                        >Add to pending</button>
+                    <button class="form-control btn btn-outline-secondary" type="button" id="pending">Add to
+                        pending</button>
                 </div>
 
 
@@ -395,6 +395,66 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <section id="chat" class="d-none" >
+
+        <div class="fabs">
+            <div class="chat" style="position: fixed;z-index: 500;right: 0; width: 300px; height: 400px;">
+                <div class="chat_header" onclick="toggleFab()" >
+                    <div class="chat_option" >
+                        <div class="header_img">
+                            <img src="http://res.cloudinary.com/dqvwa7vpe/image/upload/v1496415051/avatar_ma6vug.jpg" />
+                        </div>
+                        <span id="chat_head">Jane Doe</span> <br> <span class="agent">Patient</span> <span
+                            class="online">(Online)</span>
+                        <span id="chat_fullscreen_loader" class="chat_fullscreen_loader"><i
+                                class="fullscreen zmdi zmdi-window-maximize"></i></span>
+
+                    </div>
+
+                </div>
+            
+               
+                <div id="chat_fullscreen" class="chat_conversion chat_converse "  style="margin-top: -4px;">
+                    <span class="chat_msg_item chat_msg_item_admin">
+                        <div class="chat_avatar">
+                            <img src="http://res.cloudinary.com/dqvwa7vpe/image/upload/v1496415051/avatar_ma6vug.jpg" />
+                        </div>Hey there! Any question?
+                    </span>
+                    <span class="chat_msg_item chat_msg_item_user">
+                        Hello!</span>
+                    <div class="status">20m ago</div>
+                    <span class="chat_msg_item chat_msg_item_admin">
+                        <div class="chat_avatar">
+                            <img src="http://res.cloudinary.com/dqvwa7vpe/image/upload/v1496415051/avatar_ma6vug.jpg" />
+                        </div>Hey! How are you?
+                    </span>
+                    <span class="chat_msg_item chat_msg_item_user">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+                    
+                    <span class="chat_msg_item chat_msg_item_user">
+                        Where can I get some?</span>
+                    <span class="chat_msg_item chat_msg_item_admin">
+                        <div class="chat_avatar">
+                            <img src="http://res.cloudinary.com/dqvwa7vpe/image/upload/v1496415051/avatar_ma6vug.jpg" />
+                        </div>The standard chuck...
+                    </span>
+                    <span class="chat_msg_item chat_msg_item_user">
+                        There are many variations of passages of Lorem Ipsum available</span>
+                    <div class="status2">Just now, Not seen yet</div>
+                   
+                </div>
+                <div class="fab_field">
+                    <a id="fab_camera" class="fab"><i class="zmdi zmdi-camera"></i></a>
+                    <a id="fab_send" class="fab"><i class="zmdi zmdi-mail-send"></i></a>
+                    <textarea id="chatSend" name="chat_message" placeholder="Send a message"
+                        class="chat_field chat_message"></textarea>
+                </div>
+            </div>
+            <!-- <a id="prime" class="fab"><i class="prime zmdi zmdi-comment-outline"></i></a> -->
+        </div>
+
     </section>
 
 </body>
