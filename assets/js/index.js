@@ -1,5 +1,4 @@
-const { remote } = require("electron");
-var win = remote.BrowserWindow.getFocusedWindow();
+
 
 function login() {
     document.querySelector('.login').classList.remove('d-none');
@@ -74,18 +73,17 @@ function choiceBack(){
     document.querySelector('.doctor').classList.add('d-none');
 }
 
+var pres= document.querySelector('#presAct');
+console.log(pres);
+pres.addEventListener('click',(e)=>{
+    e.preventDefault();
+    document.querySelector('.components').classList.add('d-none');
+    document.querySelector('#prescription').classList.remove('d-none');
+});
+
+
 auth.onAuthStateChanged((user) => {
     db.collection('UserProfile').where('uid', '==', user.uid).get().then((snapshot) => {
         document.querySelector('#site-name').innerHTML = snapshot.docs[0].data().siteName;
     })
-
-
 })
-
-function winclose() {
-    win.close();
-  }
-  function winmin() {
-    win.minimize();
-  }
-  
