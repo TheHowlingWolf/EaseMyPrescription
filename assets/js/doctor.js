@@ -5,15 +5,16 @@ function addPrescription() {
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.getElementById('addPrescription').classList.remove('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
+
     db.collection('PatientProfile').get().then(snapshot => {
-        patientList.innerHTML = '';
+        patientList.innerHTML = ' <option disabled selected>Choose Patient</option>';
         snapshot.forEach(doc => {
             patientList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
         })
     })
 
     db.collection('PharmacyProfile').get().then(snapshot => {
-        pharmacyList.innerHTML = '';
+        pharmacyList.innerHTML = ' <option disabled selected>Choose Pharmacy</option>';
         snapshot.forEach(doc => {
             pharmacyList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().pharmacyName}-Id(${doc.data().pharmacyId}) </option>`;
         })
@@ -69,6 +70,7 @@ NewPrescription.addEventListener('submit', async e => {
         Prescription.doctorName = snapshot.docs[0].data().doctorName;
     })
     await db.collection('PharmacyProfile').where("uid", "==", `${Prescription.pharmacy}`).get().then(snapshot => {
+        console.log(snapshot.docs[0].data())
         Prescription.pharmacyName = snapshot.docs[0].data().pharmacyName;
     })
     console.log(Prescription);
