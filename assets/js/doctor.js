@@ -55,7 +55,9 @@ NewPrescription.addEventListener('submit', async e => {
         smartSigs: NewPrescription['smartSigs'].value,
         substitutionPermitted: NewPrescription['substitutionPermitted'].checked,
         patientName: '',
-        pharmacyName: ''
+        pharmacyName: '',
+        date:Date.now()
+
 
     }
 

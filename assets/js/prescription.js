@@ -19,7 +19,7 @@ if (jobView) {
                     <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
                         <div class="card-header">Consultation with Dr.${doc.data().doctorName} </div>
                         <div class="card-body">
-                        <h5 class="card-title"><span class="text-muted">Date:${Date(doc.data().date).toString()} </span>
+                        <h5 class="card-title"><span class="text-muted">Date:${new Date(doc.data().date).toDateString()} </span>
                         <br/>Assigned Pharmacy : ${doc.data().pharmacyName}</h5>
                           <p class="card-text border border-round border-info text-change text-left justify-content">
                                 <span class="font-weight-normal"><span class="">Rx</span><br/>
