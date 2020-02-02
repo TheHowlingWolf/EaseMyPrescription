@@ -29,6 +29,8 @@ function toDashboard() {
     document.getElementById('doctorDashboard').classList.remove('d-none');
     document.getElementById('addPrescription').classList.add('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
+    document.querySelector('.tutorial').classList.add('d-none');
+    document.querySelector('#demo').load();
     pending.innerHTML = '';
 }
 
@@ -132,4 +134,9 @@ function pendingRx() {
         </tr>`+ pending.innerHTML;
         });
     })
+}
+
+function tutorials(){
+    document.getElementById('doctorDashboard').classList.add('d-none');
+    document.querySelector('.tutorial').classList.remove('d-none');
 }

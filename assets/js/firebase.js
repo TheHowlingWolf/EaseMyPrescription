@@ -30,6 +30,7 @@ function toggleFab() {
   
 }
 
+
   $('#chat_first_screen').click(function(e) {
         hideChat(1);
   });
