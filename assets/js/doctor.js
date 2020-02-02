@@ -79,6 +79,7 @@ NewPrescription.addEventListener('submit', async e => {
 
     db.collection('prescriptions').add(Prescription);
     NewPrescription.reset();
+    document.getElementById('prescriptionSubmit').disabled = false;
     toDashboard();
 })
 

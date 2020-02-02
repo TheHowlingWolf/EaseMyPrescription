@@ -15,7 +15,7 @@ if (jobView) {
                 subs="No";
                 //console.log(new Date(doc.data().date.seconds).toLocaleString());
                 jobView.innerHTML += `
-                <div class="col-6 align-self-center">
+                <div class="col-5 align-self-center">
                     <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
                         <div class="card-header">Consultation with Dr.${doc.data().doctorName} </div>
                         <div class="card-body">
