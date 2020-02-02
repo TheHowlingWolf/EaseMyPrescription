@@ -81,9 +81,3 @@ pres.addEventListener('click',(e)=>{
     document.querySelector('#prescription').classList.remove('d-none');
 });
 
-
-auth.onAuthStateChanged((user) => {
-    db.collection('UserProfile').where('uid', '==', user.uid).get().then((snapshot) => {
-        document.querySelector('#site-name').innerHTML = snapshot.docs[0].data().siteName;
-    })
-})
