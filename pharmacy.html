@@ -164,18 +164,18 @@
                     All Prescriptions
                 </h3>
             </div>
-            <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border " onclick="pendingRx()">
+            <!-- <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border " onclick="pendingRx()">
                 <i class="fa fa-bell-o" aria-hidden="true"></i>
                 <h3 class="my-auto">
                     Pending Prescriptions
                 </h3>
-            </div>
-            <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border  " onclick="renewals()">
+            </div> -->
+            <!-- <div class="card col-5 mx-auto my-2 p-5  btn btn-light  border  " onclick="renewals()">
                 <i class="fa fa-bell-o" aria-hidden="true"></i>
                 <h3 class="my-auto">
                     Renewals
                 </h3>
-            </div>
+            </div> -->
             <div class="col-12"></div>
             <div class="card col-5 mx-auto my-2 p-5  btn btn-light border  " onclick="secureChat()">
                 <i class="fa fa-bell-o" aria-hidden="true"></i>
@@ -193,6 +193,7 @@
     </section>
     <section id="all-prescription" class="row text-center">
         <div class="col-12">
+            <a onclick="toDashboard()" style="cursor: pointer;"> Back </a>
             <h3>All Prescriptions</h3>
         </div>
         <div class="col-10 mx-auto">
@@ -201,11 +202,13 @@
                 <thead>
                     <tr>
                         <th>Patient Name</th>
+                        <th>Doctor Name</th>
                         <th>Drug Name</th>
-                        <th>Refills</th>
+                        
                         <th>Duration</th>
-                        <th>SmartSigs</th>
+                        <th >SmartSigs</th>
                         <th>Substitution Permitted</th>
+                        <th></th>
                     </tr>
 
                 </thead>

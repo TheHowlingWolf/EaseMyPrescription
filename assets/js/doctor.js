@@ -1,17 +1,19 @@
 
 let pending = document.getElementById('pendingPrescriptions')
-
+let uid;
 function addPrescription() {
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.getElementById('addPrescription').classList.remove('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
     db.collection('PatientProfile').get().then(snapshot => {
+        patientList.innerHTML ='';
         snapshot.forEach(doc => {
             patientList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
         })
     })
 
     db.collection('PharmacyProfile').get().then(snapshot => {
+        pharmacyList.innerHTML = '';
         snapshot.forEach(doc => {
             pharmacyList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().pharmacyName}-Id(${doc.data().pharmacyId}) </option>`;
         })
@@ -29,6 +31,16 @@ function toDashboard() {
     pending.innerHTML = '';
 }
 
+
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+        uid = user.uid;
+    }
+
+})
+
+
 let NewPrescription = document.getElementById('newPrescription');
 
 NewPrescription.addEventListener('submit', async e => {
@@ -44,12 +56,16 @@ NewPrescription.addEventListener('submit', async e => {
         substitutionPermitted: NewPrescription['substitutionPermitted'].checked,
         patientName: '',
         pharmacyName: ''
+        
     }
 
     await db.collection('PatientProfile').where("uid", "==", `${Prescription.patient}`).get().then(snapshot => {
-        Prescription.patientName = snapshot.docs[0].data().patientName;
+        Prescription.patientName = snapshot.docs[0].data().patientName +`(${ snapshot.docs[0].data().patientId })` ;
     });
-
+    await db.collection('DoctorProfile').where("uid","==",`${uid}`).get().then(snapshot=>{
+        Prescription.doctorId = uid;
+        Prescription.doctorName = snapshot.docs[0].data().doctorName;
+    })
     await db.collection('PharmacyProfile').where("uid", "==", `${Prescription.pharmacy}`).get().then(snapshot => {
         Prescription.pharmacyName = snapshot.docs[0].data().pharmacyName;
     })
