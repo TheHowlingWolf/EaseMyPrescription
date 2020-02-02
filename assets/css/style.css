@@ -63,6 +63,7 @@ a:hover{
     border-radius: 10px 10px 10px 10px;
     background: #00BFA6;
     background-position: center;
+    height: 645px;
     
 }
 .slip{
@@ -107,7 +108,7 @@ a:hover{
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #00BFA6; 
+    background: #f8f9fa; 
     border-radius: 10px;
   }
 
