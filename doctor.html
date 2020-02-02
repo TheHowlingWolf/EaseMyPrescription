@@ -52,12 +52,8 @@
         <div class="container d-flex h-100 text-center">
             <div class="row justify-content-center align-items-center w-100">
                 <div class="col align-self-center">
-                    <div class="Site_name_header h4 text-center  font-weight-bold m-0 clearfix">
-                        <span class=" ml-5 pl-4 text-dark">
-                            <i class=" fas fa-user ml-5 mr-1 "></i>Hello Doctor
-                        </span>
-                        <button class="btn float-right px-3 btn-outline-secondary border-secondary"
-                            onclick="settings()"><i class="fas fa-cog"></i><b> Settings</b></button>
+                    <div class="Site_name_header h2 text-center text-change font-weight-bold m-0" data-aos="zoom-in"> Hello
+                        <p id="site-name" class="d-inline"> </p>
                     </div>
                 </div>
             </div>
@@ -218,7 +214,7 @@
 
 
 
-    <section id="addPrescription" class="row justify-content-center mt-5 d-none">
+    <section id="addPrescription" class="row justify-content-center mt-2 d-none">
         <div class="col-12 text-center my-3">
             <a class="btn btn-sm" onclick="toDashboard()">Back</a>
             <h3>Add Prescription</h3>
@@ -397,9 +393,9 @@
                 <div class="col align-self-center">
                     <div class="row justify-content-center fixed-bottom">
                         <div class="col align-self-center">
-                            <a href="#" class="logout home-nav  mx-2" style="color: #f50004;">Logout</a>
-                            <p class="text-light mt-2"> Powered By <a href="#" style="text-decoration: none;"><b
-                                        class="text-danger">Codepth</b></a> All Rights Reserved. </p>
+                            <a href="#" class="logout home-nav text-change mx-2">Logout</a>
+                            <p class="text-dark"> Powered By <a href="#" style="text-decoration: none;"><b
+                                class="text-change">Ease My Prescript</b></a> All Rights Reserved. </p>
                         </div>
                     </div>
                 </div>
@@ -477,5 +473,21 @@
 <script src="./assets/js/firebase.js"></script>
 <script src="./assets/js/auth_out.js"></script>
 <script src="./assets/js/doctor.js"></script>
+<script src="./window.js"></script>
+<script>
+    AOS.init();
+</script>
+<script>
+    var doc_name;
+    (async function(){
+        auth.onAuthStateChanged(async function (user) {
+            await db.collection('DoctorProfile').where('uid','==',user.uid).get().then(async (snapshots)=>{
+            doc_name = snapshots.docs[0].data().doctorName;
+        });
+        document.querySelector('.Site_name_header').innerHTML = `Dr. ${doc_name}`
+    });
+    })();
+    
+</script>
 
 </html>
