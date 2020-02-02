@@ -90,6 +90,11 @@ a:hover{
     overflow-y: auto;
     overflow-x: hidden;
 }
+.tscrollable{
+    height: 605px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
 .scrollable-form{
     height: 400px;
