@@ -30,6 +30,7 @@ function toDashboard() {
     document.getElementById('addPrescription').classList.add('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
     document.querySelector('.tutorial').classList.add('d-none');
+    document.querySelector('#render-chats').classList.add('d-none');
     document.querySelector('#demo').load();
     pending.innerHTML = '';
 }
@@ -140,4 +141,42 @@ function pendingRx() {
 function tutorials(){
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.querySelector('.tutorial').classList.remove('d-none');
+}
+
+function chatSearch(){
+    document.getElementById('doctorDashboard').classList.add('d-none');
+    document.getElementById('addPrescription').classList.add('d-none');
+    document.getElementById('pending-Prescriptions').classList.add('d-none');
+    document.querySelector('.tutorial').classList.add('d-none');
+    document.querySelector('#demo').load();
+    document.querySelector('#render-chats').classList.remove('d-none');
+}
+
+var jobDet;
+var jobView = document.getElementById('patients');
+if (jobView) {
+    auth.onAuthStateChanged(async function (user) {
+        
+        await db.collection('PatientProfile')
+        .get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+                jobView.innerHTML += `
+                <div class="col-5 align-self-center">
+                    <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                        <div class="card-header">Consultation with ${doc.data().patientName} </div>
+                        <div class="card-body">
+                        <h6 class="card-title"><span class="text-muted">Patient ID: ${doc.data().patientId}</span></h6>
+                          <p class="card-text text-change text-left justify-content">
+                                <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
+                                <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
+                                <span class="font-weight-normal">Address: ${doc.data().address} </span>
+                                <div class="text-right"><span class="btn btn-info btn-md" onclick="toggleFab()">Chat Now</span><br/></div>
+                            </p>
+                        </div>
+                      </div>
+                </div>`
+            });
+        })
+    })
 }
