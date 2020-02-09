@@ -52,7 +52,8 @@
         <div class="container d-flex h-100 text-center">
             <div class="row justify-content-center align-items-center w-100">
                 <div class="col align-self-center">
-                    <div class="Site_name_header h2 text-center text-change font-weight-bold m-0" data-aos="zoom-in"> Hello
+                    <div class="Site_name_header h2 text-center text-change font-weight-bold m-0" data-aos="zoom-in">
+                        Hello
                         <p id="site-name" class="d-inline"> </p>
                     </div>
                 </div>
@@ -165,7 +166,7 @@
 
                         <div class="row justify-content-center">
                             <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s"
-                                onclick="addPrescription()">
+                                onclick="showPatients()">
                                 <div class="box">
                                     <div class="icon" style="background: #fceef3;"><img
                                             src="./assets/pictures/report.png" alt="" srcset="" width="60%"></div>
@@ -212,7 +213,20 @@
     </section>
 
 
+    <section id="PatientsRender" class="container d-none">
 
+        <form id="patientSearch">
+            <input type="number" name="patientName" id="patientName">
+            <button class="btn btn-info btn-sm">Search</button>
+        </form>
+
+        <div class="d-none" id="spinner" style="height: 100%;">
+            Loading from PCMD
+        </div>
+        <div class="" id="patientRenderName">
+            
+        </div>
+    </section>
 
     <section id="addPrescription" class="row justify-content-center mt-2 d-none">
         <div class="col-12 text-center my-3">
@@ -251,15 +265,15 @@
 
                         <select class="col-12 form-control" id="drug" name="drug">
                             <option disabled selected>Choose Drug</option>
-                            <option   value="Paracetamol">Paracetamol</option  >
-                                <option  value="Crocin">Crocin</option>
-                                <option  value="Amoxicillin">Amoxicillin</option>
-                                <option  value="Pantoprazol">Pantoprazol</option>
-                                <option value="Calpol">Calpol</option >
+                            <option value="Paracetamol">Paracetamol</option>
+                            <option value="Crocin">Crocin</option>
+                            <option value="Amoxicillin">Amoxicillin</option>
+                            <option value="Pantoprazol">Pantoprazol</option>
+                            <option value="Calpol">Calpol</option>
                         </select>
                     </div>
 
-                    
+
                 </div>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-3 col-form-label text-left"><span class="fa fa-clock ">
@@ -348,16 +362,16 @@
     </section>
 
     <section class="tutorial mt-2 d-none">
-        
+
         <div class="container d-flex h-100 text-center">
             <div class="row justify-content-center align-items-center w-100">
                 <div class="col-12 align-self-center">
                     <a class="btn btn-sm text-center" onclick="toDashboard()">Get Back</a>
                 </div>
-                <div class="col-12 align-self-center" >
+                <div class="col-12 align-self-center">
                     <video width="600" height="500" controls id="demo">
-                        <source src="./assets/pictures/Demo1.mp4" type="video/mp4" >
-                      </video>
+                        <source src="./assets/pictures/Demo1.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>
@@ -410,7 +424,7 @@
                         <div class="col align-self-center">
                             <a href="#" class="logout home-nav text-change mx-2">Logout</a>
                             <p class="text-dark"> Powered By <a href="#" style="text-decoration: none;"><b
-                                class="text-change">Ease My Prescript</b></a> All Rights Reserved. </p>
+                                        class="text-change">Ease My Prescript</b></a> All Rights Reserved. </p>
                         </div>
                     </div>
                 </div>
@@ -418,12 +432,12 @@
         </div>
     </section>
 
-    <section id="chat" class="d-none" >
+    <section id="chat" class="d-none">
 
         <div class="fabs">
             <div class="chat" style="position: fixed;z-index: 500;right: 0; width: 300px; height: 400px;">
-                <div class="chat_header" onclick="toggleFab()" >
-                    <div class="chat_option" >
+                <div class="chat_header" onclick="toggleFab()">
+                    <div class="chat_option">
                         <div class="header_img">
                             <img src="http://res.cloudinary.com/dqvwa7vpe/image/upload/v1496415051/avatar_ma6vug.jpg" />
                         </div>
@@ -435,9 +449,9 @@
                     </div>
 
                 </div>
-            
-               
-                <div id="chat_fullscreen" class="chat_conversion chat_converse "  style="margin-top: -4px;">
+
+
+                <div id="chat_fullscreen" class="chat_conversion chat_converse " style="margin-top: -4px;">
                     <span class="chat_msg_item chat_msg_item_admin">
                         <div class="chat_avatar">
                             <img src="http://res.cloudinary.com/dqvwa7vpe/image/upload/v1496415051/avatar_ma6vug.jpg" />
@@ -453,7 +467,7 @@
                     </span>
                     <span class="chat_msg_item chat_msg_item_user">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    
+
                     <span class="chat_msg_item chat_msg_item_user">
                         Where can I get some?</span>
                     <span class="chat_msg_item chat_msg_item_admin">
@@ -464,7 +478,7 @@
                     <span class="chat_msg_item chat_msg_item_user">
                         There are many variations of passages of Lorem Ipsum available</span>
                     <div class="status2">Just now, Not seen yet</div>
-                   
+
                 </div>
                 <div class="fab_field">
                     <a id="fab_camera" class="fab"><i class="zmdi zmdi-camera"></i></a>
@@ -494,15 +508,15 @@
 </script>
 <script>
     var doc_name;
-    (async function(){
+    (async function () {
         auth.onAuthStateChanged(async function (user) {
-            await db.collection('DoctorProfile').where('uid','==',user.uid).get().then(async (snapshots)=>{
-            doc_name = snapshots.docs[0].data().doctorName;
+            await db.collection('DoctorProfile').where('uid', '==', user.uid).get().then(async (snapshots) => {
+                doc_name = snapshots.docs[0].data().doctorName;
+            });
+            document.querySelector('.Site_name_header').innerHTML = `Dr. ${doc_name}`
         });
-        document.querySelector('.Site_name_header').innerHTML = `Dr. ${doc_name}`
-    });
     })();
-    
+
 </script>
 
 </html>
