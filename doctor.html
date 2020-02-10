@@ -213,19 +213,41 @@
     </section>
 
 
-    <section id="PatientsRender" class="container d-none">
+    <section id="PatientsRender" class="section-bg clearfix mb-5 scrollable btn-change d-none">
+        <div class="container d-flex pt-5 text-center h-100">
+            <div class="row justify-content-center align-items-center w-100">
+                <div class="col-12 align-self-center">
+                    <h3 class="text-light mb-2 text-center">Your Patients</h3>
+                    <a class="btn btn-sm text-light" onclick="toDashboard()"> Get Back</a>
+                </div>
+<div class="col-12"></div>
+                <form id="patientSearch" class="col-5">
+                    <div class="form-group p-0 m-0">
+                        <div class="input-group input-group-lg">
+                            <input name="patientName" type="text" class="form-control rounded mt-1" id="patientName"
+                                style="height: 30px; font-size: 15px;" placeholder="Enter Patient ID">
 
-        <form id="patientSearch">
-            <input type="number" name="patientName" id="patientName">
-            <button class="btn btn-info btn-sm">Search</button>
-        </form>
+                            <button type="submit" class="btn btn-md btn-transparent input-group-addon text-light"><i
+                                    class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span
+                            class="font-weight-bold">PDMP Check</span></p>
+                </form>
+                <div class="col-12"></div>
+                <div class="d-none" id="spinner" style="height: 100%;">
+                    <img src="./assets/icons/Ellipsis-1s-200px.svg" alt="" srcset="" class="img-fluid">
+                    <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span
+                            class="font-weight-bold">PDMP Check</span></p>
+                </div>
 
-        <div class="d-none" id="spinner" style="height: 100%;">
-            Loading from PCMD
+                <div class=" row col-12 justify-content-center" id="patientRenderName">
+    
+                </div>
+            </div>
+
         </div>
-        <div class="" id="patientRenderName">
-            
-        </div>
+
     </section>
 
     <section id="addPrescription" class="row justify-content-center mt-2 d-none">
@@ -416,7 +438,7 @@
         </div>
     </section>
 
-    <section id="render-chats"  class="section-bg clearfix mb-5 scrollable btn-change d-none">
+    <section id="render-chats" class="section-bg clearfix mb-5 scrollable btn-change d-none">
         <div class="container d-flex pt-5 text-center h-100">
             <div class="row justify-content-center align-items-center w-100" id="patients">
                 <div class="render-static col-12 align-self-center">
@@ -429,21 +451,24 @@
                         <div class="form-group p-0 m-0">
                             <div class="input-group input-group-lg">
                                 <input name="patientSearchID" type="text" class="form-control rounded mt-1"
-                                    id="patientSearchID" style="height: 30px; font-size: 15px;" placeholder="Enter Patient ID">
-                            
-                                <span class="btn btn-md btn-transparent input-group-addon text-light" onclick="searchPatient()"><i
-                                    class="fas fa-search"></i></span>
-                                </div>
+                                    id="patientSearchID" style="height: 30px; font-size: 15px;"
+                                    placeholder="Enter Patient ID">
+
+                                <span class="btn btn-md btn-transparent input-group-addon text-light"
+                                    onclick="searchPatient()"><i class="fas fa-search"></i></span>
                             </div>
-                        </form>
-                    <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span class="font-weight-bold">PDMP Check</span></p>
+                        </div>
+                    </form>
+                    <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span
+                            class="font-weight-bold">PDMP Check</span></p>
                 </div>
                 <div class="render-static col-4"></div>
                 <div class="render-loader col-12 align-self-center d-none">
                     <img src="./assets/icons/Ellipsis-1s-200px.svg" alt="" srcset="" class="img-fluid">
-                    <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span class="font-weight-bold">PDMP Check</span></p>
+                    <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span
+                            class="font-weight-bold">PDMP Check</span></p>
                 </div>
-                
+
                 <div class="col-12 align-item-center p-0 m-0">
                 </div>
             </div>
@@ -504,30 +529,30 @@
         </div>
     </section>
 
-<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/json2csv"></script>
-<script src="./assets/js/firebase.js"></script>
-<script src="./assets/js/auth_out.js"></script>
-<script src="./assets/js/doctor.js"></script>
-<script src="./window.js"></script>
-<script>
-    AOS.init();
-</script>
-<script>
-    var doc_name;
-    (async function () {
-        auth.onAuthStateChanged(async function (user) {
-            await db.collection('DoctorProfile').where('uid', '==', user.uid).get().then(async (snapshots) => {
-                doc_name = snapshots.docs[0].data().doctorName;
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/json2csv"></script>
+    <script src="./assets/js/firebase.js"></script>
+    <script src="./assets/js/auth_out.js"></script>
+    <script src="./assets/js/doctor.js"></script>
+    <script src="./window.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        var doc_name;
+        (async function () {
+            auth.onAuthStateChanged(async function (user) {
+                await db.collection('DoctorProfile').where('uid', '==', user.uid).get().then(async (snapshots) => {
+                    doc_name = snapshots.docs[0].data().doctorName;
+                });
+                document.querySelector('.Site_name_header').innerHTML = `Dr. ${doc_name}`
             });
-            document.querySelector('.Site_name_header').innerHTML = `Dr. ${doc_name}`
-        });
-    })();
+        })();
 
-</script>
+    </script>
 </body>
 
 </html>

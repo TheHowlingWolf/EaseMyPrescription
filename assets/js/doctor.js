@@ -8,6 +8,7 @@ function addPrescription(patientid, patientName) {
     document.getElementById('addPrescription').classList.remove('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
     const patient = document.getElementById('ChoosePatient');
+    
     patient.innerHTML = `<option value='${patientid}'> ${patientName}-Id(${patientid}) </option>`;
     // db.collection('PatientProfile').get().then(snapshot => {
     //     patientList.innerHTML = ' <option disabled selected>Choose Patient</option>';
@@ -52,15 +53,42 @@ searchFun.addEventListener('submit', async e => {
     document.getElementById('patientRenderName').classList.add('d-none');
     console.log(pid);
     db.collection('PatientProfile').where("patientId", "==", `${pid}`).get().then(snapshot => {
-        console.log(snapshot)
-        snapshot.forEach(doc => {
+        if (snapshot.docs.length === 0) {
             document.getElementById('spinner').classList.remove('d-none');
             setTimeout(() => {
                 document.getElementById('spinner').classList.add('d-none');
                 document.getElementById('patientRenderName').classList.remove('d-none');
-                document.getElementById('patientRenderName').innerHTML = `<button class="btn btn-large " onclick="addPrescription('${doc.data().patientId}','${doc.data().patientName}')"> ${doc.data().patientName}</button>`
+                document.getElementById('patientSearch').classList.remove('d-none');
+                document.getElementById('patientRenderName').innerHTML = "<h4 class='text-dark'>Invalid Patient Id </h4>"
+
             }, 2000);
-        })
+        }
+        else {
+            snapshot.forEach(doc => {
+
+                document.getElementById('patientSearch').classList.add('d-none');
+                document.getElementById('spinner').classList.remove('d-none');
+                setTimeout(() => {
+                    document.getElementById('spinner').classList.add('d-none');
+                    document.getElementById('patientRenderName').classList.remove('d-none');
+                    document.getElementById('patientRenderName').innerHTML = `<div class="col-5 align-self-center rendered-patient">
+                <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                    <div class="card-header font-weight-bold">Consultation with ${doc.data().patientName} </div>
+                    <div class="card-body">
+                    <h6 class="card-title"><span class="text-muted">Patient ID: ${doc.data().patientId}</span></h6>
+                      <p class="card-text text-change text-left justify-content">
+                            <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
+                            <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
+                            <span class="font-weight-normal">Address: ${doc.data().address} </span>
+                            <div class="text-right"><span class="btn btn-info btn-md" onclick="addPrescription('${doc.data().patientId}','${doc.data().patientName}')">Prescribe Now</span><br/></div>
+                        </p>
+                    </div>
+                  </div>
+            </div>`
+
+                }, 2000);
+            })
+        }
     })
 })
 
@@ -77,6 +105,8 @@ function toDashboard() {
     document.querySelector('.tutorial').classList.add('d-none');
     document.querySelector('#render-chats').classList.add('d-none');
     document.querySelector('#demo').load();
+    document.getElementById('patientRenderName').innerHTML="";
+    document.getElementById('PatientsRender').classList.add('d-none');
     pending.innerHTML = '';
 }
 
@@ -188,7 +218,7 @@ function tutorials() {
     document.querySelector('.tutorial').classList.remove('d-none');
 }
 
-function chatSearch(){
+function chatSearch() {
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.getElementById('addPrescription').classList.add('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
@@ -201,12 +231,12 @@ var jobDet;
 var jobView = document.getElementById('patients');
 if (jobView) {
     auth.onAuthStateChanged(async function (user) {
-        
+
         await db.collection('PatientProfile')
-        .get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-                jobView.innerHTML += `
+            .get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    jobView.innerHTML += `
                 <div class="col-5 align-self-center rendered-patient">
                     <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
                         <div class="card-header">Consultation with ${doc.data().patientName} </div>
@@ -221,37 +251,36 @@ if (jobView) {
                         </div>
                       </div>
                 </div>`
-            });
-        })
+                });
+            })
     })
 }
 
-function searchPatient(){
+function searchPatient() {
     var render_static = document.querySelectorAll('.render-static');
     for (var i = 0; i < render_static.length; i++) {
         render_static[i].classList.add('d-none');
-     }
+    }
     var rendered_patient = document.querySelectorAll('.rendered-patient');
     for (var i = 0; i < rendered_patient.length; i++) {
         rendered_patient[i].classList.add('d-none');
-     }
-     var searched_patient = document.querySelectorAll('.searched-patient');
+    }
+    var searched_patient = document.querySelectorAll('.searched-patient');
     for (var i = 0; i < searched_patient.length; i++) {
         searched_patient[i].classList.add('d-none');
-        }
+    }
     document.querySelector('.render-loader').classList.remove('d-none');
-    setTimeout(async ()=>{
+    setTimeout(async () => {
         var patient = document.querySelector('#patientSearchID').value;
-        console.log (patient);
+        console.log(patient);
         var jobView = document.getElementById('patients');
-        if(patient !== "")
-        {
-        await db.collection('PatientProfile').where("patientId","==",`${patient}`)
-        .get()
-        .then(snapshot => {
-            console.log(snapshot.docs[0]);
-            console.log('success')
-            jobView.innerHTML += `
+        if (patient !== "") {
+            await db.collection('PatientProfile').where("patientId", "==", `${patient}`)
+                .get()
+                .then(snapshot => {
+                    console.log(snapshot.docs[0]);
+                    console.log('success')
+                    jobView.innerHTML += `
             <div class="col-5 align-self-start searched-patient">
                 <div class="card text-change bg-light mb-3 mx-2" style="max-width: 40rem; height: auto;">
                     <div class="card-header">Consultation with ${snapshot.docs[0].data().patientName} </div>
@@ -266,45 +295,45 @@ function searchPatient(){
                     </div>
                   </div>
             </div>`;
-        })
-        .catch(async error=>{
-            console.log(error);
-            jobView.innerHTML += `
+                })
+                .catch(async error => {
+                    console.log(error);
+                    jobView.innerHTML += `
             <h3 class="text-light mb-2 text-center searched-error">Sorry no patient with entered ID found in the database!</h3>`
-            await setTimeout(()=>{
-                var rendered_patient = document.querySelectorAll('.rendered-patient');
-                for (var i = 0; i < rendered_patient.length; i++) {
-                    rendered_patient[i].classList.remove('d-none');
-                 }
-                var searched_error = document.querySelectorAll('.searched-error');
-                for (var i = 0; i < searched_error.length; i++) {
-                     searched_error[i].classList.add('d-none');
-                  }
-            },3000);
-        });
-        var render_static = document.querySelectorAll('.render-static');
-        for (var i = 0; i < render_static.length; i++) {
-            render_static[i].classList.remove('d-none');
-            }
-        document.querySelector('.render-loader').classList.add('d-none');
-        }
-        else{
+                    await setTimeout(() => {
+                        var rendered_patient = document.querySelectorAll('.rendered-patient');
+                        for (var i = 0; i < rendered_patient.length; i++) {
+                            rendered_patient[i].classList.remove('d-none');
+                        }
+                        var searched_error = document.querySelectorAll('.searched-error');
+                        for (var i = 0; i < searched_error.length; i++) {
+                            searched_error[i].classList.add('d-none');
+                        }
+                    }, 3000);
+                });
             var render_static = document.querySelectorAll('.render-static');
             for (var i = 0; i < render_static.length; i++) {
                 render_static[i].classList.remove('d-none');
-                }
+            }
+            document.querySelector('.render-loader').classList.add('d-none');
+        }
+        else {
+            var render_static = document.querySelectorAll('.render-static');
+            for (var i = 0; i < render_static.length; i++) {
+                render_static[i].classList.remove('d-none');
+            }
             document.querySelector('.render-loader').classList.add('d-none');
             var searched_patient = document.querySelectorAll('.searched-patient');
             for (var i = 0; i < searched_patient.length; i++) {
                 searched_patient[i].classList.add('d-none');
-             }
+            }
             var searched_error = document.querySelectorAll('.searched-error');
             for (var i = 0; i < searched_error.length; i++) {
                 searched_error[i].classList.add('d-none');
-             }
+            }
             for (var i = 0; i < rendered_patient.length; i++) {
                 rendered_patient[i].classList.remove('d-none');
-             }   
+            }
         }
-    },2000);
+    }, 2000);
 }
