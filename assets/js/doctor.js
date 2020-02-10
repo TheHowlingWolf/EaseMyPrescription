@@ -1,15 +1,15 @@
 
 let pending = document.getElementById('pendingPrescriptions')
 let uid;
-function addPrescription(patientid, patientName) {
+
+
+function addPrescription() {
     document.getElementById('PatientsRender').classList.add('d-none');
 
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.getElementById('addPrescription').classList.remove('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
-    const patient = document.getElementById('ChoosePatient');
-    
-    patient.innerHTML = `<option value='${patientid}'> ${patientName}-Id(${patientid}) </option>`;
+
     // db.collection('PatientProfile').get().then(snapshot => {
     //     patientList.innerHTML = ' <option disabled selected>Choose Patient</option>';
     //     snapshot.forEach(doc => {
@@ -17,33 +17,66 @@ function addPrescription(patientid, patientName) {
     //     })
     // })
 
-    db.collection('PharmacyProfile').get().then(snapshot => {
-        pharmacyList.innerHTML = ' <option disabled selected>Choose Pharmacy</option>';
-        snapshot.forEach(doc => {
-            pharmacyList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().pharmacyName}-Id(${doc.data().pharmacyId}) </option>`;
-        })
-    })
+    // db.collection('PharmacyProfile').get().then(snapshot => {
+    //     pharmacyList.innerHTML = ' <option disabled selected>Choose Pharmacy</option>';
+    //     snapshot.forEach(doc => {
+    //         pharmacyList.innerHTML += ``;
+    //     })
+    // })
 }
+
 
 function showPatients() {
     document.getElementById('PatientsRender').classList.remove('d-none');
     document.getElementById('doctorDashboard').classList.add('d-none');
+}
+const searchPharmacy = document.getElementById('pharmacySearch');
 
-    let patient = document.getElementById('patients');
-    // patient.innerHTML = '';
-    db.collection('PatientProfile').get().then(snapshot => {
-        snapshot.forEach(doc => {
+searchPharmacy.addEventListener('submit', async e => {
+    e.preventDefault();
+    document.getElementById('pharmacySearch').classList.add('d-none');
+    document.getElementById('pharmacyRenderName').classList.add('d-none');
 
-            patientList.innerHTML += `<td> ${doc.data().patientId}) </td>
-            <td>  ${doc.data().patientName}</td>
-            <td>  ${doc.data().mobno}</td>
-            <td>  ${doc.data().email}</td>
-            <td> <button onclick="addPrescription(${doc.data()})"></button></td>
-            `;
-        })
+    const pharId = searchPharmacy['pharmacyName'].value;
+    db.collection('PharmacyProfile').where('pharmacyId', '==', `${pharId}`).get().then(snapshot => {
+        console.log(snapshot.docs[0])
+        document.getElementById('spinner1').classList.remove('d-none');
+        if (snapshot.docs.length === 0) {
+            setTimeout(() => {
+                document.getElementById('spinner1').classList.add('d-none');
+                document.getElementById('pharmacyRenderName').classList.remove('d-none');
+                document.getElementById('pharmacySearch').classList.remove('d-none');
+                document.getElementById('pharmacyRenderName').innerHTML = "<h4 class='text-dark'>Invalid Patient Id </h4>"
+
+            }, 2000);
+        }
+        else {
+            snapshot.forEach(doc => {
+                document.getElementById('ChoosePharmacy').innerHTML = `<option value='${doc.data().uid}'> ${doc.data().pharmacyName}-Id(${doc.data().pharmacyId}) </option>`;
+                setTimeout(() => {
+                    document.getElementById('spinner1').classList.add('d-none');
+                    document.getElementById('pharmacyRenderName').classList.remove('d-none');
+                    document.getElementById('pharmacyRenderName').innerHTML = `<div class="col-5 align-self-center rendered-patient mx-auto">
+                <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                    <div class="card-header font-weight-bold">Pharmacy ${doc.data().pharmacyName} </div>
+                    <div class="card-body">
+                    <h6 class="card-title"><span class="text-muted">Pharmacy ID: ${doc.data().pharmacyId}</span></h6>
+                      <p class="card-text text-change text-left justify-content">
+                            <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
+                            <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
+                            <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span>
+                            <div class="text-right"><span class="btn btn-info btn-md" onclick="addPrescription()">Prescribe Now</span><br/></div>
+                        </p>
+                    </div>
+                  </div>
+            </div>`;
+
+                }, 2000);
+            })
+        }
     })
 
-}
+})
 
 const searchFun = document.getElementById('patientSearch')
 
@@ -66,6 +99,10 @@ searchFun.addEventListener('submit', async e => {
         else {
             snapshot.forEach(doc => {
 
+                const patient = document.getElementById('ChoosePatient');
+                patient.innerHTML = `<option value='${doc.data().uid}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
+
+
                 document.getElementById('patientSearch').classList.add('d-none');
                 document.getElementById('spinner').classList.remove('d-none');
                 setTimeout(() => {
@@ -80,7 +117,7 @@ searchFun.addEventListener('submit', async e => {
                             <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
                             <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
                             <span class="font-weight-normal">Address: ${doc.data().address} </span>
-                            <div class="text-right"><span class="btn btn-info btn-md" onclick="addPrescription('${doc.data().patientId}','${doc.data().patientName}')">Prescribe Now</span><br/></div>
+                            <div class="text-right"><span class="btn btn-info btn-md" onclick="choosePharmacy()">Prescribe Now</span><br/></div>
                         </p>
                     </div>
                   </div>
@@ -96,7 +133,10 @@ let patientList = document.getElementById('ChoosePatient')
 
 let pharmacyList = document.getElementById('ChoosePharmacy')
 
-
+function choosePharmacy() {
+    document.getElementById('PatientsRender').classList.add('d-none');
+    document.getElementById('pharmacyRender').classList.remove('d-none');
+}
 
 function toDashboard() {
     document.getElementById('doctorDashboard').classList.remove('d-none');
@@ -105,8 +145,9 @@ function toDashboard() {
     document.querySelector('.tutorial').classList.add('d-none');
     document.querySelector('#render-chats').classList.add('d-none');
     document.querySelector('#demo').load();
-    document.getElementById('patientRenderName').innerHTML="";
+    document.getElementById('patientRenderName').innerHTML = "";
     document.getElementById('PatientsRender').classList.add('d-none');
+    document.getElementById('pharmacyRender').classList.add('d-none')
     pending.innerHTML = '';
 }
 
@@ -118,6 +159,7 @@ auth.onAuthStateChanged(user => {
     }
 
 })
+
 
 
 let NewPrescription = document.getElementById('newPrescription');
