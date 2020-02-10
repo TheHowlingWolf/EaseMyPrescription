@@ -18,7 +18,8 @@ var firebaseConfig = {
   });
   
 //Toggle chat and links
-function toggleFab() {
+function toggleFab(patientName) {
+      document.getElementById('chat_head').innerHTML =  `${patientName}`;
   document.getElementById('chat').classList.toggle('d-none');
   $('.prime').toggleClass('zmdi-comment-outline');
   $('.prime').toggleClass('zmdi-close');

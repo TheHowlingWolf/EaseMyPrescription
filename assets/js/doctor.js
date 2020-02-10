@@ -328,7 +328,7 @@ if (jobView) {
                                 <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
                                 <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
                                 <span class="font-weight-normal">Address: ${doc.data().address} </span>
-                                <div class="text-right"><span class="btn btn-info btn-md" onclick="toggleFab()">Chat Now</span><br/></div>
+                                <div class="text-right"><span class="btn btn-info btn-md" onclick="toggleFab('${doc.data().patientName}')">Chat Now</span><br/></div>
                             </p>
                         </div>
                       </div>
@@ -360,7 +360,7 @@ function searchPatient() {
             await db.collection('PatientProfile').where("patientId", "==", `${patient}`)
                 .get()
                 .then(snapshot => {
-                    console.log(snapshot.docs[0]);
+                    
                     console.log('success')
                     jobView.innerHTML += `
             <div class="col-5 align-self-start searched-patient">
@@ -372,7 +372,7 @@ function searchPatient() {
                             <span class="font-weight-normal">Mobile Number:${snapshot.docs[0].data().mobno} </span><br/>
                             <span class="font-weight-normal">Email ID : ${snapshot.docs[0].data().email} </span><br/>
                             <span class="font-weight-normal">Address: ${snapshot.docs[0].data().address} </span>
-                            <div class="text-right"><span class="btn btn-info btn-md" onclick="toggleFab()">Chat Now</span><br/></div>
+                            <div class="text-right"><span class="btn btn-info btn-md" onclick="toggleFab('${snapshot.docs[0].data().patientName}')">Chat Now</span><br/></div>
                         </p>
                     </div>
                   </div>
