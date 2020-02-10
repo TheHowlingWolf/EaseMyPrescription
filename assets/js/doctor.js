@@ -1,17 +1,20 @@
 
 let pending = document.getElementById('pendingPrescriptions')
 let uid;
-function addPrescription() {
+function addPrescription(patientid, patientName) {
+    document.getElementById('PatientsRender').classList.add('d-none');
+
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.getElementById('addPrescription').classList.remove('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
-
-    db.collection('PatientProfile').get().then(snapshot => {
-        patientList.innerHTML = ' <option disabled selected>Choose Patient</option>';
-        snapshot.forEach(doc => {
-            patientList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
-        })
-    })
+    const patient = document.getElementById('ChoosePatient');
+    patient.innerHTML = `<option value='${patientid}'> ${patientName}-Id(${patientid}) </option>`;
+    // db.collection('PatientProfile').get().then(snapshot => {
+    //     patientList.innerHTML = ' <option disabled selected>Choose Patient</option>';
+    //     snapshot.forEach(doc => {
+    //         patientList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
+    //     })
+    // })
 
     db.collection('PharmacyProfile').get().then(snapshot => {
         pharmacyList.innerHTML = ' <option disabled selected>Choose Pharmacy</option>';
@@ -21,9 +24,51 @@ function addPrescription() {
     })
 }
 
+function showPatients() {
+    document.getElementById('PatientsRender').classList.remove('d-none');
+    document.getElementById('doctorDashboard').classList.add('d-none');
+
+    let patient = document.getElementById('patients');
+    // patient.innerHTML = '';
+    db.collection('PatientProfile').get().then(snapshot => {
+        snapshot.forEach(doc => {
+
+            patientList.innerHTML += `<td> ${doc.data().patientId}) </td>
+            <td>  ${doc.data().patientName}</td>
+            <td>  ${doc.data().mobno}</td>
+            <td>  ${doc.data().email}</td>
+            <td> <button onclick="addPrescription(${doc.data()})"></button></td>
+            `;
+        })
+    })
+
+}
+
+const searchFun = document.getElementById('patientSearch')
+
+searchFun.addEventListener('submit', async e => {
+    e.preventDefault();
+    const pid = searchFun["patientName"].value;
+    document.getElementById('patientRenderName').classList.add('d-none');
+    console.log(pid);
+    db.collection('PatientProfile').where("patientId", "==", `${pid}`).get().then(snapshot => {
+        console.log(snapshot)
+        snapshot.forEach(doc => {
+            document.getElementById('spinner').classList.remove('d-none');
+            setTimeout(() => {
+                document.getElementById('spinner').classList.add('d-none');
+                document.getElementById('patientRenderName').classList.remove('d-none');
+                document.getElementById('patientRenderName').innerHTML = `<button class="btn btn-large " onclick="addPrescription('${doc.data().patientId}','${doc.data().patientName}')"> ${doc.data().patientName}</button>`
+            }, 2000);
+        })
+    })
+})
+
 let patientList = document.getElementById('ChoosePatient')
 
 let pharmacyList = document.getElementById('ChoosePharmacy')
+
+
 
 function toDashboard() {
     document.getElementById('doctorDashboard').classList.remove('d-none');
@@ -60,7 +105,7 @@ NewPrescription.addEventListener('submit', async e => {
         substitutionPermitted: NewPrescription['substitutionPermitted'].checked,
         patientName: '',
         pharmacyName: '',
-        date:Date.now()
+        date: Date.now()
 
 
     }
@@ -138,7 +183,7 @@ function pendingRx() {
     })
 }
 
-function tutorials(){
+function tutorials() {
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.querySelector('.tutorial').classList.remove('d-none');
 }
