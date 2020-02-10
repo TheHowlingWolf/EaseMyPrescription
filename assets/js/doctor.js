@@ -226,8 +226,6 @@ if (jobView) {
     })
 }
 
-
-
 function searchPatient(){
     var render_static = document.querySelectorAll('.render-static');
     for (var i = 0; i < render_static.length; i++) {
@@ -237,20 +235,25 @@ function searchPatient(){
     for (var i = 0; i < rendered_patient.length; i++) {
         rendered_patient[i].classList.add('d-none');
      }
+     var searched_patient = document.querySelectorAll('.searched-patient');
+    for (var i = 0; i < searched_patient.length; i++) {
+        searched_patient[i].classList.add('d-none');
+        }
     document.querySelector('.render-loader').classList.remove('d-none');
     setTimeout(async ()=>{
         var patient = document.querySelector('#patientSearchID').value;
-        //console.log (typeof patient);
+        console.log (patient);
         var jobView = document.getElementById('patients');
         if(patient !== "")
         {
-        await db.collection('PatientProfile').where('patientId','==',patient)
+        await db.collection('PatientProfile').where("patientId","==",`${patient}`)
         .get()
         .then(snapshot => {
             console.log(snapshot.docs[0]);
+            console.log('success')
             jobView.innerHTML += `
-            <div class="col-5 align-self-center searched-patient">
-                <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+            <div class="col-5 align-self-start searched-patient">
+                <div class="card text-change bg-light mb-3 mx-2" style="max-width: 40rem; height: auto;">
                     <div class="card-header">Consultation with ${snapshot.docs[0].data().patientName} </div>
                     <div class="card-body">
                     <h6 class="card-title"><span class="text-muted">Patient ID: ${snapshot.docs[0].data().patientId}</span></h6>
