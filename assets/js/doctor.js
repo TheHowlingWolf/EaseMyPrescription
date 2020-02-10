@@ -5,11 +5,12 @@ let uid;
 
 function addPrescription(drugname) {
     document.getElementById('PatientsRender').classList.add('d-none');
-document.getElementById('drug').innerHTML =  `<option value = '${drugname}'>${drugname}</option>`
+    document.getElementById('drug').innerHTML = `<option value = '${drugname}'>${drugname}</option>`
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.getElementById('addPrescription').classList.remove('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
-
+    document.getElementById('render-drugs').classList.add('d-none');
+    document.getElementById('prescriptionSubmit').disabled = false;
     // db.collection('PatientProfile').get().then(snapshot => {
     //     patientList.innerHTML = ' <option disabled selected>Choose Patient</option>';
     //     snapshot.forEach(doc => {
@@ -131,7 +132,7 @@ searchFun.addEventListener('submit', async e => {
     })
 })
 
-function chooseDrugs(Uid,name,id) {
+function chooseDrugs(Uid, name, id) {
     document.getElementById('pharmacyRender').classList.add('d-none');
     document.getElementById('render-drugs').classList.remove('d-none');
     document.getElementById('ChoosePharmacy').innerHTML = `<option value='${Uid}'> ${name}-Id(${id}) </option>`;
@@ -187,7 +188,7 @@ function toDashboard() {
     document.getElementById('pharmacyRender').classList.add('d-none')
     document.getElementById('pharmacySearch').classList.remove('d-none');
     document.getElementById('patientSearch').classList.remove('d-none');
-
+    document.getElementById('render-drugs').classList.add('d-none');
     pending.innerHTML = '';
 }
 
@@ -235,9 +236,9 @@ NewPrescription.addEventListener('submit', async e => {
     })
     console.log(Prescription);
 
-    db.collection('prescriptions').add(Prescription);
+    db.collection('prescriptions').add(Prescription).then();
     NewPrescription.reset();
-    document.getElementById('prescriptionSubmit').disabled = false;
+    
     toDashboard();
 })
 
@@ -284,7 +285,7 @@ function pendingRx() {
         snapshot.forEach(doc => {
             pending.innerHTML = ` <tr>
                         
-            <td>${doc.data().pharmacy}</td>
+            <td>${doc.data().pharmacyName}</td>
             <td>${doc.data().drugName}</td>
             <td>${doc.data().refills}</td>
             <td>${doc.data().duration}</td>
@@ -360,7 +361,7 @@ function searchPatient() {
             await db.collection('PatientProfile').where("patientId", "==", `${patient}`)
                 .get()
                 .then(snapshot => {
-                    
+
                     console.log('success')
                     jobView.innerHTML += `
             <div class="col-5 align-self-start searched-patient">
