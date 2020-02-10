@@ -65,7 +65,7 @@ searchPharmacy.addEventListener('submit', async e => {
                             <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
                             <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
                             <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span>
-                            <div class="text-right"><span class="btn btn-info btn-md" onclick="addPrescription()">Prescribe Now</span><br/></div>
+                            <div class="text-right"><span class="btn btn-info btn-md" onclick="chooseDrugs()">Prescribe Now</span><br/></div>
                         </p>
                     </div>
                   </div>
@@ -128,6 +128,12 @@ searchFun.addEventListener('submit', async e => {
         }
     })
 })
+
+function chooseDrugs(){
+    document.getElementById('pharmacyRender').classList.add('d-none');
+    document.getElementById('render-drugs').classList.remove('d-none');
+    
+}
 
 let patientList = document.getElementById('ChoosePatient')
 
