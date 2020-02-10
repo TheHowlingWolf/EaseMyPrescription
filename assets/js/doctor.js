@@ -3,9 +3,9 @@ let pending = document.getElementById('pendingPrescriptions')
 let uid;
 
 
-function addPrescription() {
+function addPrescription(drugname) {
     document.getElementById('PatientsRender').classList.add('d-none');
-
+document.getElementById('drug').innerHTML =  `<option value = '${drugname}'>${drugname}</option>`
     document.getElementById('doctorDashboard').classList.add('d-none');
     document.getElementById('addPrescription').classList.remove('d-none');
     document.getElementById('pending-Prescriptions').classList.add('d-none');
@@ -65,7 +65,7 @@ searchPharmacy.addEventListener('submit', async e => {
                             <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
                             <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
                             <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span>
-                            <div class="text-right"><span class="btn btn-info btn-md" onclick="chooseDrugs()">Prescribe Now</span><br/></div>
+                            <div class="text-right"><span class="btn btn-info btn-md" onclick="chooseDrugs('${doc.data().uid}','${doc.data().pharmacyName}','${doc.data().pharmacyId}')">Prescribe Now</span><br/></div>
                         </p>
                     </div>
                   </div>
@@ -77,6 +77,8 @@ searchPharmacy.addEventListener('submit', async e => {
     })
 
 })
+
+
 
 const searchFun = document.getElementById('patientSearch')
 
@@ -129,10 +131,12 @@ searchFun.addEventListener('submit', async e => {
     })
 })
 
-function chooseDrugs(){
+function chooseDrugs(Uid,name,id) {
     document.getElementById('pharmacyRender').classList.add('d-none');
     document.getElementById('render-drugs').classList.remove('d-none');
-    
+    document.getElementById('ChoosePharmacy').innerHTML = `<option value='${Uid}'> ${name}-Id(${id}) </option>`;
+    document.getElementById('pharmacySearch').classList.remove('d-none');
+
 }
 
 let patientList = document.getElementById('ChoosePatient')
@@ -142,7 +146,34 @@ let pharmacyList = document.getElementById('ChoosePharmacy')
 function choosePharmacy() {
     document.getElementById('PatientsRender').classList.add('d-none');
     document.getElementById('pharmacyRender').classList.remove('d-none');
+    document.getElementById('patientSearch').classList.remove('d-none');
 }
+
+
+db.collection('PharmacyProfile').get().then(snapshot => {
+    snapshot.forEach(doc => {
+        document.getElementById('ChoosePharmacy').innerHTML = `<option value='${doc.data().uid}'> ${doc.data().pharmacyName}-Id(${doc.data().pharmacyId}) </option>`;
+        setTimeout(() => {
+            document.getElementById('spinner1').classList.add('d-none');
+            document.getElementById('pharmacyRenderName').classList.remove('d-none');
+            document.getElementById('pharmacyRenderName').innerHTML += `<div class="col-5 align-self-center rendered-patient mx-auto">
+            <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                <div class="card-header font-weight-bold">Pharmacy ${doc.data().pharmacyName} </div>
+                <div class="card-body">
+                <h6 class="card-title"><span class="text-muted">Pharmacy ID: ${doc.data().pharmacyId}</span></h6>
+                  <p class="card-text text-change text-left justify-content">
+                        <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
+                        <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
+                        <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span>
+                        <div class="text-right"><span class="btn btn-info btn-md" onclick="chooseDrugs('${doc.data().uid}','${doc.data().pharmacyName}','${doc.data().pharmacyId}')">Prescribe Now</span><br/></div>
+                    </p>
+                </div>
+              </div>
+        </div>`;
+
+        }, 2000);
+    })
+})
 
 function toDashboard() {
     document.getElementById('doctorDashboard').classList.remove('d-none');
@@ -154,6 +185,9 @@ function toDashboard() {
     document.getElementById('patientRenderName').innerHTML = "";
     document.getElementById('PatientsRender').classList.add('d-none');
     document.getElementById('pharmacyRender').classList.add('d-none')
+    document.getElementById('pharmacySearch').classList.remove('d-none');
+    document.getElementById('patientSearch').classList.remove('d-none');
+
     pending.innerHTML = '';
 }
 

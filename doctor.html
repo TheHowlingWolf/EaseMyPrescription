@@ -260,8 +260,9 @@
                     <form id="pharmacySearch" class="col-5 align-self-center mx-auto">
                         <div class="form-group p-0 m-0">
                             <div class="input-group input-group-lg">
-                                <input name="pharmacyName" type="text" class="form-control rounded mt-1" id="pharmacyName"
-                                    style="height: 30px; font-size: 15px;" placeholder="Enter Pharmacy ID">
+                                <input name="pharmacyName" type="text" class="form-control rounded mt-1"
+                                    id="pharmacyName" style="height: 30px; font-size: 15px;"
+                                    placeholder="Enter Pharmacy ID">
 
                                 <button type="submit" class="btn btn-md btn-transparent input-group-addon text-light"><i
                                         class="fas fa-search"></i></button>
@@ -319,12 +320,7 @@
                     <div class="col-9">
 
                         <select class="col-12 form-control" id="drug" name="drug">
-                            <option disabled selected>Choose Drug</option>
-                            <option value="Paracetamol">Paracetamol</option>
-                            <option value="Crocin">Crocin</option>
-                            <option value="Amoxicillin">Amoxicillin</option>
-                            <option value="Pantoprazol">Pantoprazol</option>
-                            <option value="Calpol">Calpol</option>
+
                         </select>
                     </div>
 
@@ -362,7 +358,7 @@
 
                 <div class="form-group row my-3">
                     <label for="staticEmail" class="col-3 col-form-label text-left"><span class="fa fa-rss-square ">
-                            Smart Sigs</span>
+                            Dosage</span>
                     </label>
                     <div class="col-9 ">
                         <select class="col-12 text-center form-control " name="smartSigs" id="smartSigs">
@@ -431,7 +427,7 @@
                         <th>Drug Name</th>
                         <th>Refills</th>
                         <th>Duration</th>
-                        <th>SmartSigs</th>
+                        <th>Dosage</th>
                         <th>Substitution Permitted</th>
                     </tr>
 
@@ -512,7 +508,7 @@
         <div class="container d-flex pt-5 text-center h-100">
             <div class="row justify-content-center align-items-center w-100" id="patients">
                 <div class="render-static col-12 align-self-center">
-                    <h3 class="text-light mb-2 text-center">Your Patients</h3>
+                    <h3 class="text-light mb-2 text-center">Choose Drug</h3>
                     <a class="btn btn-sm text-light" onclick="toDashboard()"> Get Back</a>
                 </div>
                 <div class="render-static col-4"></div>
@@ -523,9 +519,9 @@
                                 <input name="drugsSearchID" type="text" class="form-control rounded mt-1"
                                     id="drugsSearchID" style="height: 30px; font-size: 15px;"
                                     placeholder="Enter Drug Name">
-    
-                                <span type="button" class="btn btn-md btn-transparent input-group-addon text-light"
-                                    ><i class="fas fa-search"></i></span>
+
+                                <span class="btn btn-md btn-transparent input-group-addon text-light" onclick="searchDrugs()"><i
+                                        class="fas fa-search"></i></span>
                             </div>
                         </div>
                     </form>
@@ -538,13 +534,108 @@
                     <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span
                             class="font-weight-bold">PDMP Check</span></p>
                 </div>
-    
-                <div class="col-12 align-item-center p-0 m-0" id="renderDrugs">
+                  
+                <div class="col-12 align-item-center p-0 m-0 row " id="renderDrugs">
+                    <div class="col-4 align-self-center rendered-patient mx-auto">
+                        <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                            <div class="card-header font-weight-bold">Azikem  </div>
+                            <div class="card-body">
+                                <h6 class="card-title"><span class="text-muted">500 mg</span></h6>
+                                <p class="card-text text-change text-left justify-content">
+                                    <span class="font-weight-normal">Take 1 tablet by mouth once a day </span><br />
+                                    <!-- <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br />
+                                    <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span> -->
+                                    <div class="text-right"><span class="btn btn-info btn-md"
+                                            onclick="addPrescription('Azikem 500mg')">Prescribe Now</span><br /></div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 align-self-center rendered-patient mx-auto">
+                        <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                            <div class="card-header font-weight-bold">Metrogyl </div>
+                            <div class="card-body">
+                                <h6 class="card-title"><span class="text-muted">50 mg</span></h6>
+                                <p class="card-text text-change text-left justify-content">
+                                    <span class="font-weight-normal">Take 1 tablet by mouth once a day </span><br />
+                                    <!-- <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br />
+                                    <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span> -->
+                                    <div class="text-right"><span class="btn btn-info btn-md"
+                                            onclick="addPrescription('metrogyl 50mg')">Prescribe Now</span><br /></div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 align-self-center rendered-patient mx-auto">
+                        <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                            <div class="card-header font-weight-bold">Pan 40 </div>
+                            <div class="card-body">
+                                <h6 class="card-title"><span class="text-muted"></span></h6>
+                                <p class="card-text text-change text-left justify-content">
+                                    <span class="font-weight-normal">Take 1 tablet by mouth once a day </span><br />
+                                    <!-- <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br />
+                                    <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span> -->
+                                    <div class="text-right"><span class="btn btn-info btn-md"
+                                            onclick="addPrescription('Pan 40')">Prescribe Now</span><br /></div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 align-self-center rendered-patient mx-auto">
+                        <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                            <div class="card-header font-weight-bold">Calpol </div>
+                            <div class="card-body">
+                                <h6 class="card-title"><span class="text-muted">500 mg</span></h6>
+                                <p class="card-text text-change text-left justify-content">
+                                    <span class="font-weight-normal">Take 1 tablet by mouth once a day </span><br />
+                                    <!-- <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br />
+                                    <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span> -->
+                                    <div class="text-right"><span class="btn btn-info btn-md"
+                                            onclick="addPrescription('Calpol 500mg')">Prescribe Now</span><br /></div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 align-self-center rendered-patient mx-auto">
+                        <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                            <div class="card-header font-weight-bold">Paracetamol </div>
+                            <div class="card-body">
+                                <h6 class="card-title"><span class="text-muted">650 mg</span></h6>
+                                <p class="card-text text-change text-left justify-content">
+                                    <span class="font-weight-normal">Take 1 tablet by mouth twice a day </span><br />
+                                    <!-- <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br />
+                                    <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span> -->
+                                    <div class="text-right"><span class="btn btn-info btn-md"
+                                            onclick="addPrescription('Paracetamol 650mg')">Prescribe Now</span><br /></div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 align-self-center rendered-patient mx-auto">
+                        <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+                            <div class="card-header font-weight-bold">Norflox </div>
+                            <div class="card-body">
+                                <h6 class="card-title"><span class="text-muted">400 mg</span></h6>
+                                <p class="card-text text-change text-left justify-content">
+                                    <span class="font-weight-normal">Take 1 tablet by mouth twice a day </span><br />
+                                    <!-- <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br />
+                                    <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span> -->
+                                    <div class="text-right"><span class="btn btn-info btn-md"
+                                            onclick="addPrescription('Norflox 400mg')">Prescribe Now</span><br /></div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
     </section>
-    
+
 
     <section id="chat" class="d-none">
         <div class="fabs">

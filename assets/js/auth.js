@@ -103,7 +103,7 @@ phsite.addEventListener('submit', (e) => {
                         });
                     db.collection('PharmacyProfile').add({
                         uid: cred.user.uid,
-                        pharmacyId: pharNo,
+                        pharmacyId:String(pharNo),
                         pharmacyName: patientname,
                         email: email,
                         mobno: mobno,
@@ -168,7 +168,7 @@ dsite.addEventListener('submit', (e) => {
                         });
                     db.collection('DoctorProfile').add({
                         uid: cred.user.uid,
-                        doctorId: docNo,
+                        doctorId:String(docNo),
                         doctorName: patientname,
                         email: email,
                         mobno: mobno,
