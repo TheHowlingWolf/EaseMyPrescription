@@ -62,99 +62,7 @@
         </div>
     </section>
 
-    <!-- <section class="settings-menu d-none">
-        <div class="container d-flex h-100 text-center">
-            <div class="row justify-content-center align-items-center w-100">
-                <div class="col align-self-center">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-12">
-                            <img src="./assets/pictures/business-and-finance.png" alt="" srcset="" width="25%">
-                        </div>
-                        <div class="col-12">
-                            <button class="lg-btn btn btn-lg btn-outline-warning btn-danger text-light mt-3 mx-2"
-                                onclick="updatePass();">Update Password</button>
-                        </div>
-                        <div class="col-12">
-                            <button class="lg-btn btn btn-lg btn-outline-warning btn-danger text-light mt-3 mx-2"
-                                onclick="authPass();">Update User Authentication Key</button>
-                        </div>
-                        <button id="close-btn" class="btn btn btn-transparent  m-2 p-0" onclick="back()"><i
-                                class="fas fa-arrow-circle-left p-1"></i>Back To Admin Panel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- <section class="settings-menu-updatepass d-none">
-        <div class="container d-flex h-100 text-center">
-            <div class="row justify-content-center align-items-center w-100">
-                <div class="col align-self-center">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-12">
-                            <img src="./assets/pictures/lock.png" alt="" srcset="" width="25%">
-                        </div>
-                        <div class="col-12">
-                            <p class="pass-error lead text-dark font-weight-bold mt-2 bg-warning text-center"></p>
-                            <input name="updatePass" type="password" class="form-control rounded w-50 mt-2 d-inline"
-                                id="UpdatePass" placeholder="Enter New Password">
-                        </div>
-                        <div class="col-12">
-
-                            <input name="oldPass" type="password" class="form-control rounded w-50 mt-2 d-inline"
-                                id="oldPass" placeholder="Enter Old Password">
-                        </div>
-                        <div class="col-12">
-                            <input type="submit"
-                                class="update-pass-btn btn btn-lg btn-outline-warning btn-danger text-light mt-3 mx-2">
-                        </div>
-                        <button id="close-btn" class="btn btn btn-transparent  m-2 p-0" onclick="setBack()"><i
-                                class="fas fa-arrow-circle-left p-1"></i>Back To Settings
-                            Menu</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="settings-menu-updateauth d-none">
-        <div class="container d-flex h-100 text-center">
-            <div class="row justify-content-center align-items-center w-100">
-                <div class="col align-self-center">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-12">
-                            <img src="./assets/pictures/defense.png" alt="" srcset="" width="25%">
-                        </div>
-                        <div class="col-12">
-                            <p class="auth-error lead text-dark font-weight-bold mt-2 bg-warning text-center"></p>
-                            <input name="authpdatePass" type="password" class="form-control rounded w-50 mt-2 d-inline"
-                                id="authUpdatePass" placeholder="Enter New Authentication Password">
-                        </div>
-                        <div class="col-12">
-
-                            <input name="autOldPass" type="password" class="form-control rounded w-50 mt-2 d-inline"
-                                id="authOldPass" placeholder="Enter Old Authentication Password">
-                        </div>
-                        <div class="col-12">
-                            <input type="submit"
-                                class="update-auth-btn btn btn-lg btn-outline-warning btn-danger text-light mt-3 mx-2">
-                        </div>
-                        <button id="close-btn" class="btn btn btn-transparent  m-2 p-0" onclick="setBack()"><i
-                                class="fas fa-arrow-circle-left p-1"></i>Back To Settings
-                            Menu</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-
-    <!-- <section class="scrollable">
-
-        <div class="row  justify-content-center" id="">
-
-        </div>
-    </section> -->
-
-
+  
     <section class="components mt-2" id="doctorDashboard">
         <div class="container d-flex h-100">
             <div class="row justify-content-center align-items-center w-100">
@@ -249,6 +157,19 @@
         </div>
     </section>
 
+    <section class="con-reg d-none" id="confirm">
+        <div class="container d-flex h-100 text-center">
+            <div class="row justify-content-center align-items-center w-100">
+                <div class="col align-self-center">
+                    <img src="./assets/pictures/tick.svg" alt="" srcset="" width="15%">
+                    <h1 class="display-4 font-weight-bold" id="prescribe"> Successfully Prescribed!</h1>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <section id="pharmacyRender" class="section-bg clearfix mb-5 scrollable btn-change  d-none">
         <div class="container d-flex pt-5 text-center h-100">
             <div class="row justify-content-center align-items-center w-100">
@@ -278,7 +199,7 @@
                     <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span
                             class="font-weight-bold">PDMP Check</span></p>
                 </div>
-                <div class="col-12 d-none " id="pharmacyRenderName">
+                <div class="col-12 d-none row " id="pharmacyRenderName">
 
                 </div>
             </div>

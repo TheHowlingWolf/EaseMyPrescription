@@ -111,7 +111,7 @@ searchFun.addEventListener('submit', async e => {
                 setTimeout(() => {
                     document.getElementById('spinner').classList.add('d-none');
                     document.getElementById('patientRenderName').classList.remove('d-none');
-                    document.getElementById('patientRenderName').innerHTML = `<div class="col-5 align-self-center rendered-patient">
+                    document.getElementById('patientRenderName').innerHTML = `<div class="col-6 align-self-center rendered-patient">
                 <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
                     <div class="card-header font-weight-bold">Consultation with ${doc.data().patientName} </div>
                     <div class="card-body">
@@ -157,7 +157,7 @@ db.collection('PharmacyProfile').get().then(snapshot => {
         setTimeout(() => {
             document.getElementById('spinner1').classList.add('d-none');
             document.getElementById('pharmacyRenderName').classList.remove('d-none');
-            document.getElementById('pharmacyRenderName').innerHTML += `<div class="col-5 align-self-center rendered-patient mx-auto">
+            document.getElementById('pharmacyRenderName').innerHTML += `<div class="col-4 align-self-center rendered-patient mx-auto">
             <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
                 <div class="card-header font-weight-bold">Pharmacy ${doc.data().pharmacyName} </div>
                 <div class="card-body">
@@ -238,8 +238,13 @@ NewPrescription.addEventListener('submit', async e => {
 
     db.collection('prescriptions').add(Prescription).then();
     NewPrescription.reset();
-    
-    toDashboard();
+    document.getElementById('prescribe').innerHTML = "Successfully Prescribed";
+    document.getElementById('confirm').classList.remove('d-none');
+    setTimeout(() => {
+        document.getElementById('addPrescription').classList.add('d-none');
+        document.getElementById('confirm').classList.add('d-none');
+        toDashboard();
+    }, 2000);
 })
 
 document.getElementById('pending').addEventListener('click', async e => {
@@ -271,7 +276,14 @@ document.getElementById('pending').addEventListener('click', async e => {
 
     db.collection('pendingPrescriptions').add(Prescription);
     NewPrescription.reset();
-    toDashboard();
+    document.getElementById('prescribe').innerHTML = "Added to Pending"
+    document.getElementById('confirm').classList.remove('d-none');
+    setTimeout(() => {
+        document.getElementById('addPrescription').classList.add('d-none');
+        document.getElementById('pending').disabled = false;
+        document.getElementById('confirm').classList.add('d-none');
+        toDashboard();
+    }, 2000);
 })
 
 
