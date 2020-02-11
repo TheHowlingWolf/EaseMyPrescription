@@ -158,11 +158,11 @@ db.collection('PharmacyProfile').get().then(snapshot => {
             document.getElementById('spinner1').classList.add('d-none');
             document.getElementById('pharmacyRenderName').classList.remove('d-none');
             document.getElementById('pharmacyRenderName').innerHTML += `<div class="col-4 align-self-center rendered-patient mx-auto">
-            <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+            <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: 20rem;">
                 <div class="card-header font-weight-bold">Pharmacy ${doc.data().pharmacyName} </div>
                 <div class="card-body">
                 <h6 class="card-title"><span class="text-muted">Pharmacy ID: ${doc.data().pharmacyId}</span></h6>
-                  <p class="card-text text-change text-left justify-content">
+                  <p class="card-text text-change text-left">
                         <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
                         <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
                         <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span>
