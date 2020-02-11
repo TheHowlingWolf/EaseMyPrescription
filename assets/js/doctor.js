@@ -57,7 +57,7 @@ searchPharmacy.addEventListener('submit', async e => {
                 setTimeout(() => {
                     document.getElementById('spinner1').classList.add('d-none');
                     document.getElementById('pharmacyRenderName').classList.remove('d-none');
-                    document.getElementById('pharmacyRenderName').innerHTML = `<div class="col-5 align-self-center rendered-patient mx-auto">
+                    document.getElementById('pharmacyRenderName').innerHTML = `<div class="col-4 align-self-center rendered-patient mx-auto">
                 <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
                     <div class="card-header font-weight-bold">Pharmacy ${doc.data().pharmacyName} </div>
                     <div class="card-body">
@@ -111,7 +111,7 @@ searchFun.addEventListener('submit', async e => {
                 setTimeout(() => {
                     document.getElementById('spinner').classList.add('d-none');
                     document.getElementById('patientRenderName').classList.remove('d-none');
-                    document.getElementById('patientRenderName').innerHTML = `<div class="col-6 align-self-center rendered-patient">
+                    document.getElementById('patientRenderName').innerHTML = `<div class="col-4 align-self-center rendered-patient">
                 <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
                     <div class="card-header font-weight-bold">Consultation with ${doc.data().patientName} </div>
                     <div class="card-body">
@@ -332,7 +332,7 @@ if (jobView) {
             .then(snapshot => {
                 snapshot.forEach(doc => {
                     jobView.innerHTML += `
-                <div class="col-5 align-self-center rendered-patient">
+                <div class="col-4 align-self-center rendered-patient">
                     <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
                         <div class="card-header">Consultation with ${doc.data().patientName} </div>
                         <div class="card-body">
@@ -376,7 +376,7 @@ function searchPatient() {
 
                     console.log('success')
                     jobView.innerHTML += `
-            <div class="col-5 align-self-start searched-patient">
+            <div class="col-4 align-self-start searched-patient">
                 <div class="card text-change bg-light mb-3 mx-2" style="max-width: 40rem; height: auto;">
                     <div class="card-header">Consultation with ${snapshot.docs[0].data().patientName} </div>
                     <div class="card-body">
