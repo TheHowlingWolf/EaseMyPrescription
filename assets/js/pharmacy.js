@@ -51,6 +51,7 @@ function allPrescriptions() {
 function toDashboard(){
     document.getElementById('all-prescription').classList.add('d-none');
     document.getElementById('PharmacyDashboard').classList.remove('d-none');
+    document.querySelector('#render-pharmacy').classList.add('d-none');
 }
 
 function nextRefill(pname, docName,drugName,duration, docId) {
