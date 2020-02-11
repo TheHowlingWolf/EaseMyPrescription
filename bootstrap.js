@@ -16,8 +16,7 @@ function createWindow() {
         transparent:true,
         frame:false,
         webPreferences: {
-            nodeIntegration: true,
-            devTools:false
+            nodeIntegration: true
         }
     });
     win.show();
@@ -27,12 +26,12 @@ function createWindow() {
         protocol:'file',
         slashes:true
     }));
-    //win.openDevTools();
+    win.openDevTools();
     win.on('closed',()=>{
         win = null;
     });
 
-    win.webContents.on("devtools-opened", () => { win.webContents.closeDevTools(); });
+    //win.webContents.on("devtools-opened", () => { win.webContents.closeDevTools(); });
 
 }
 

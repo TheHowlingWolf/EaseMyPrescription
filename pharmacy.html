@@ -14,6 +14,7 @@
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+<script> window. $ = window.jQuery = require ('jquery'); </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -191,7 +192,7 @@
             <h3>All Prescriptions</h3>
         </div>
         <div class="col-10 mx-auto  tscrollable">
-            <table class="table table-bordered table-hover  align-self-center">
+            <table class="table table-bordered table-hover align-self-start" style="font-size: 12px;">
 
                 <thead >
                     <tr>
@@ -202,6 +203,7 @@
                         <th>Duration</th>
                         <th >Dosage </th>
                         <th>Substitution Permitted</th>
+                        <th>Transfer Prescription</th>
                         <th></th>
                     </tr>
 
@@ -216,12 +218,49 @@
     </section>
 
 
+    <section id="render-pharmacy" class="section-bg clearfix mb-5 scrollable btn-change d-none">
+        <div class="container d-flex pt-5 text-center h-100">
+            <div class="row justify-content-center align-items-center w-100" id="pharmacy">
+                <div class="render-static col-12 align-self-center">
+                    <h3 class="text-light mb-2 text-center">Pharmacy</h3>
+                    <a class="btn btn-sm text-light" onclick="toDashboard()"> Get Back</a>
+                </div>
+                <div class="render-static col-4"></div>
+                <div class="render-static col-4 align-self-start">
+                    <form class="form ">
+                        <div class="form-group p-0 m-0">
+                            <div class="input-group input-group-lg">
+                                <input name="pharmacySearchID" type="text" class="form-control rounded mt-1"
+                                    id="pharmacySearchID" style="height: 30px; font-size: 15px;"
+                                    placeholder="Enter Pharmacy ID">
+
+                                <span class="btn btn-md btn-transparent input-group-addon text-light"
+                                    onclick="searchPharmacy();"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span
+                            class="font-weight-bold">Ease My Prescript</span></p>
+                </div>
+                <div class="render-static col-4"></div>
+                <div class="render-loader col-12 align-self-center d-none">
+                    <img src="./assets/icons/Ellipsis-1s-200px.svg" alt="" srcset="" class="img-fluid">
+                    <p class="lead text-light text-center" style="font-size: 15px;">Search powered by <span
+                            class="font-weight-bold">Ease My Prescript</span></p>
+                </div>
+
+                <div class="col-12 align-item-center p-0 m-0">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="con-reg d-none">
         <div class="container d-flex h-100 text-center">
             <div class="row justify-content-center align-items-center w-100">
                 <div class="col align-self-center">
-                    <img src="./assets/pictures/check.png" alt="" srcset="" width="25%">
-                    <h1 class="display-4 font-weight-bold"> Successfully Updated!</h1>
+                    <img src="./assets/pictures/tick.svg" alt="" srcset="" width="15%">
+                    <h1 class="display-4 font-weight-bold"> Successfully Transfered!</h1>
 
                 </div>
             </div>
