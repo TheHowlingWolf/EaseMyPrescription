@@ -11,19 +11,7 @@ function addPrescription(drugname) {
     document.getElementById('pending-Prescriptions').classList.add('d-none');
     document.getElementById('render-drugs').classList.add('d-none');
     document.getElementById('prescriptionSubmit').disabled = false;
-    // db.collection('PatientProfile').get().then(snapshot => {
-    //     patientList.innerHTML = ' <option disabled selected>Choose Patient</option>';
-    //     snapshot.forEach(doc => {
-    //         patientList.innerHTML += `<option value='${doc.data().uid}'> ${doc.data().patientName}-Id(${doc.data().patientId}) </option>`;
-    //     })
-    // })
-
-    // db.collection('PharmacyProfile').get().then(snapshot => {
-    //     pharmacyList.innerHTML = ' <option disabled selected>Choose Pharmacy</option>';
-    //     snapshot.forEach(doc => {
-    //         pharmacyList.innerHTML += ``;
-    //     })
-    // })
+    
 }
 
 
@@ -240,8 +228,8 @@ NewPrescription.addEventListener('submit', async e => {
     NewPrescription.reset();
     document.getElementById('prescribe').innerHTML = "Successfully Prescribed";
     document.getElementById('confirm').classList.remove('d-none');
+    document.getElementById('addPrescription').classList.add('d-none');
     setTimeout(() => {
-        document.getElementById('addPrescription').classList.add('d-none');
         document.getElementById('confirm').classList.add('d-none');
         toDashboard();
     }, 2000);
@@ -278,8 +266,8 @@ document.getElementById('pending').addEventListener('click', async e => {
     NewPrescription.reset();
     document.getElementById('prescribe').innerHTML = "Added to Pending"
     document.getElementById('confirm').classList.remove('d-none');
+    document.getElementById('addPrescription').classList.add('d-none');
     setTimeout(() => {
-        document.getElementById('addPrescription').classList.add('d-none');
         document.getElementById('pending').disabled = false;
         document.getElementById('confirm').classList.add('d-none');
         toDashboard();
