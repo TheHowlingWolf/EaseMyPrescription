@@ -99,7 +99,7 @@ searchFun.addEventListener('submit', async e => {
                 setTimeout(() => {
                     document.getElementById('spinner').classList.add('d-none');
                     document.getElementById('patientRenderName').classList.remove('d-none');
-                    document.getElementById('patientRenderName').innerHTML = `<div class="col-4 align-self-center rendered-patient">
+                    document.getElementById('patientRenderName').innerHTML = `<div class="col-6 align-self-center rendered-patient">
                 <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
                     <div class="card-header font-weight-bold">Consultation with ${doc.data().patientName} </div>
                     <div class="card-body">
@@ -146,15 +146,15 @@ db.collection('PharmacyProfile').get().then(snapshot => {
             document.getElementById('spinner1').classList.add('d-none');
             document.getElementById('pharmacyRenderName').classList.remove('d-none');
             document.getElementById('pharmacyRenderName').innerHTML += `<div class="col-4 align-self-center rendered-patient mx-auto">
-            <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: auto;">
+            <div class="card text-change bg-light mb-3 mx-2 mt-2" style="max-width: 40rem; height: 20rem;">
                 <div class="card-header font-weight-bold">Pharmacy ${doc.data().pharmacyName} </div>
                 <div class="card-body">
                 <h6 class="card-title"><span class="text-muted">Pharmacy ID: ${doc.data().pharmacyId}</span></h6>
-                  <p class="card-text text-change text-left justify-content">
+                  <p class="card-text text-change text-left">
                         <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
-                        <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
+                        <span class="font-weight-normal">Email: ${doc.data().email} </span><br/>
                         <span class="font-weight-normal">Licence No : ${doc.data().licenceNo} </span>
-                        <div class="text-right"><span class="btn btn-info btn-md" onclick="chooseDrugs('${doc.data().uid}','${doc.data().pharmacyName}','${doc.data().pharmacyId}')">Prescribe Now</span><br/></div>
+                        <div class="text-center py-3"><span class="btn btn-info btn-md" onclick="chooseDrugs('${doc.data().uid}','${doc.data().pharmacyName}','${doc.data().pharmacyId}')">Prescribe Now</span><br/></div>
                     </p>
                 </div>
               </div>
@@ -327,7 +327,7 @@ if (jobView) {
                         <h6 class="card-title"><span class="text-muted">Patient ID: ${doc.data().patientId}</span></h6>
                           <p class="card-text text-change text-left justify-content">
                                 <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
-                                <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
+                                <span class="font-weight-normal">Email: ${doc.data().email} </span><br/>
                                 <span class="font-weight-normal">Address: ${doc.data().address} </span>
                                 <div class="text-right"><span class="btn btn-info btn-md" onclick="toggleFab('${doc.data().patientName}')">Chat Now</span><br/></div>
                             </p>
@@ -371,7 +371,7 @@ function searchPatient() {
                     <h6 class="card-title"><span class="text-muted">Patient ID: ${snapshot.docs[0].data().patientId}</span></h6>
                       <p class="card-text text-change text-left justify-content">
                             <span class="font-weight-normal">Mobile Number:${snapshot.docs[0].data().mobno} </span><br/>
-                            <span class="font-weight-normal">Email ID : ${snapshot.docs[0].data().email} </span><br/>
+                            <span class="font-weight-normal">Email: ${snapshot.docs[0].data().email} </span><br/>
                             <span class="font-weight-normal">Address: ${snapshot.docs[0].data().address} </span>
                             <div class="text-right"><span class="btn btn-info btn-md" onclick="toggleFab('${snapshot.docs[0].data().patientName}')">Chat Now</span><br/></div>
                         </p>

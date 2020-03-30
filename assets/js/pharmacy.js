@@ -111,7 +111,7 @@ if (jobView) {
                         <h6 class="card-title"><span class="text-muted">Pharmacy ID: ${doc.data().pharmacyId}</span></h6>
                           <p class="card-text text-change text-left justify-content">
                                 <span class="font-weight-normal">Mobile Number:${doc.data().mobno} </span><br/>
-                                <span class="font-weight-normal">Email ID : ${doc.data().email} </span><br/>
+                                <span class="font-weight-normal">Email: ${doc.data().email} </span><br/>
                                 <span class="font-weight-normal">Address: ${doc.data().licenceNo} </span>
                                 <div class="text-right"><span class="btn btn-info btn-md" onclick="transfered()">Transfer Now</span><br/></div>
                             </p>
@@ -155,7 +155,7 @@ function searchPharmacy() {
                     <h6 class="card-title"><span class="text-muted">Patient ID: ${snapshot.docs[0].data().pharmacyId}</span></h6>
                       <p class="card-text text-change text-left justify-content">
                             <span class="font-weight-normal">Mobile Number:${snapshot.docs[0].data().mobno} </span><br/>
-                            <span class="font-weight-normal">Email ID : ${snapshot.docs[0].data().email} </span><br/>
+                            <span class="font-weight-normal">Email: ${snapshot.docs[0].data().email} </span><br/>
                             <span class="font-weight-normal">Address: ${snapshot.docs[0].data().licenceNo} </span>
                             <div class="text-right"><span class="btn btn-info btn-md" onclick="transfered()">Chat Now</span><br/></div>
                         </p>
